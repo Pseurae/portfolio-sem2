@@ -1,0 +1,24 @@
+@font-face {
+    font-family: "against";
+    src: url("against-regular.otf");
+}
+
+@font-face {
+    font-family: "barcode";
+    src: url("LibreBarcode128-Regular.ttf");
+}
+
+@font-face {
+    font-family: "neuemachina-light";
+    src: url("NeueMachina-Light.otf");
+}
+
+@font-face {
+    font-family: "neuemachina-regular";
+    src: url("NeueMachina-Regular.otf");
+}
+
+@font-face {
+    font-family: "neuemachina-ultrabold";
+    src: url("NeueMachina-Ultrabold.otf");
+}

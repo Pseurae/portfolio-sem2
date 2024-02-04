@@ -1,0 +1,447 @@
+@import url("assets/fonts/fonts.css");
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html.lenis {
+    height: auto;
+  }
+  
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+:root {
+    --body-bg: #212224;
+    --body-fg: #fff;
+    --section-padding: 6rem;
+}
+
+.section-header {
+    font-family: 'neuemachina-ultrabold';
+    font-size: 4rem;
+    margin: 2rem 0 3rem 0;
+    z-index: 1;
+}
+
+.section {
+    padding: 0 var(--section-padding) 0 var(--section-padding);
+}
+
+.section-spacing {
+    padding: calc(var(--section-padding) / 2) 0;
+}
+
+.button {
+    border-radius: 999px;
+    padding: 1rem 0;
+    border: 2px solid white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+
+    transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+
+    &:hover {
+        background-color: #fff;
+        color: #000;
+    }
+}
+
+body {
+    margin: 0;
+    font-family: 'neuemachina-light', 'monospace';
+    font-weight: 200;
+    background-color: var(--body-bg);
+    color: var(--body-fg);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: subpixel-antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-smoothing: antialiased;
+}
+
+footer {
+    margin-top: 2rem;
+    display: grid;
+    place-items: center;
+
+    a {
+        @extend .button;
+        padding-left: 2rem;
+        padding-right: 2rem;
+
+        display: flex;
+        gap: 1rem;
+
+        cursor: pointer;
+
+
+        &:hover {
+            .arrow {
+                rotate: -90deg;
+                filter: invert(1.0);
+            }
+        }
+
+        .arrow {
+            position: relative;
+            rotate: -45deg;
+            transition: rotate 0.2s ease-in-out, filter 0.2s ease-in-out;
+        }
+    }
+
+    .divider {
+        content: '';
+        margin-top: 2rem;
+        width: 100%;
+        height: 1px;
+        background-color: #fff;
+    }
+
+    .content {
+        @extend .section;
+
+        margin: 2rem 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        p {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        .barcode {
+            font-family: 'barcode';
+            font-size: 2.5rem;
+        }
+    }
+}
+
+.bars {
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100svh;
+    pointer-events: none;
+
+    display: flex;
+    z-index: 20;
+
+    .bar {
+        background-color: #000;
+        width: 10%;
+        height: 100%;
+    }
+}
+
+main {
+    .hero {
+        min-height: 100svh;
+        position: relative;
+        display: grid;
+        place-items: center;
+
+        .name {
+            text-align: center;
+
+            h1 {
+                font-family: 'against', 'serif';
+                font-size: 5rem;
+                margin: 0;
+            }
+    
+            p {
+                margin: 0;
+                color: #777;
+                font-size: 1.5rem;
+                font-family: "neuemachina-regular";
+            }
+        }
+
+        .circles {
+            position: absolute;
+            margin: auto;
+            opacity: 0.3;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+        }
+
+        .scroll-indicator.left {
+            left: calc(var(--section-padding) / 2);
+        }
+
+        .scroll-indicator.right {
+            right: calc(var(--section-padding) / 2);
+        }
+
+    }
+
+    .education {
+        overflow: hidden;
+
+        .container {
+            --line-offset: calc(1rem * 0.75);
+            --left-margin: 3rem;
+
+            position: relative;
+            display: grid;
+            gap: 2.5rem;
+
+            .line {
+                position: absolute;
+                height: calc(100%);
+                width: 4px;
+                top: var(--line-offset);
+                left: -2px; // Half of width
+                background-color: #fff;
+                border-radius: 50px;
+            }
+    
+            .listing {
+                margin-left: var(--left-margin);
+                position: relative;
+
+                &::before {
+                    position: absolute;
+                    content: '';
+                    width: 2rem;
+                    height: 2rem;
+
+                    background-color: #fff;
+                    border-radius: 50%;
+
+                    top: var(--line-offset);
+                    left: calc(-1 * var(--left-margin));
+
+                    transform: translateX(-50%);
+                }
+
+                .qualification {
+                    font-family: 'neuemachina-regular';
+                    font-size: 2.5rem;
+                    margin: 0;
+                }
+
+                .institution {
+                    font-size: 2rem;
+                    opacity: 0.5;
+                    margin: 0;
+                }
+
+                .year {
+                    font-size: 2rem;
+                    opacity: 0.5;
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    .about-me {
+        .container {
+            display: grid;
+            grid-template-columns: 1.75fr 1fr;
+            gap: 4rem;
+
+            .text {
+                p {
+                    font-size: 2.5rem;
+                    margin-top: 0;
+                    margin-bottom: 5.5rem;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            .portrait-container {
+                perspective: 1000px;
+                perspective-origin: 50% 50%;
+
+                .portrait {
+                    --rotate-x: 0deg;
+                    --rotate-y: 0deg;
+                    width: 100%;
+                    position: sticky;
+                    top: 4rem;
+                    border: 4px solid white;
+                    transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+                    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+
+                    filter: drop-shadow(#19181880 0 1rem 16px);
+                }
+            }
+        }
+    }
+
+    .experience {
+        p {
+            position: relative;
+            font-family: 'neuemachina-regular';
+            font-size: 5.5rem;
+            margin: 0;
+            overflow: hidden;
+
+            .overlay {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: var(--body-bg);
+                opacity: 70%;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+
+    .projects {
+        .container {
+            .listing {
+                text-decoration: 0;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                padding: 2rem 0;
+
+                &:hover {
+                    h2 > .word > .letter {
+                        transform: translateY(-100%);
+                    }
+                }
+
+                h2 {
+                    font-family: 'neuemachina-ultrabold';
+                    font-size: 2.5rem;
+                    margin: 0;
+                    height: 3.5rem;
+                    overflow: hidden;
+
+                    .letter {
+                        transition: transform 0.4s;
+                        transition-delay: var(--delay);
+                        display: inline-block;
+                    }
+
+                    .word:last-child {
+                        color: #ffe8a9;
+                    }
+                }
+
+                p {
+                    font-size: 2rem;
+                    margin: 0;
+                    margin-left: auto;
+                }
+            }
+
+            .divider {
+                width: 100%;
+                height: 2px;
+                background-color: white;
+            }
+        }
+    }
+
+    .made-with {
+        h1 {
+            cursor: default;
+            font-family: 'neuemachina-ultrabold';
+            font-size: 8rem;
+            text-align: center;
+
+            span {
+                position: relative;
+
+                a {
+                    color: inherit;
+                    text-decoration: none;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+
+                        height: 15px;
+                        width: 0%;
+
+                        background-color: currentColor;
+
+                        transition: width 0.25s ease-in-out;
+                    }
+
+                    &:hover {
+                        &::after {
+                            width: 100%;
+                        } 
+                    }
+                }
+            }
+
+            .love { color: #FF4040; }
+            .gsap { color: #92FF80; }
+            .lenis { color: #FFA9A9; }
+
+            .animate {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+    
+            .love > .animate {
+                content: url("assets/images/heart.svg");
+                left: 75%;
+                top: -10%;
+            }
+    
+            .gsap > .animate {
+                content: url("assets/images/asterisk.svg");
+                left: -25%;
+                top: -25%;
+            }
+    
+            .lenis > .animate {
+                content: url("assets/images/mouse.svg");
+                left: 90%;
+                top: 10%;
+            }
+        }
+    }
+
+    .contacts {
+        .email {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .btn-container {
+            margin-top: 3.5rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+
+            a {
+                @extend .button;
+            }
+        }
+    }
+}
