@@ -12,20 +12,9 @@
     <script src="assets/scripts/lenis.min.js"></script>
     <script src="assets/scripts/split-type.min.js"></script>
     <script src='main.js'></script>
- </head>
+</head>
 <body>
-    <div class="bars">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
+    <div class="trailer"></div>
     <main>
         <div class="hero">
             <div class="name">
@@ -36,8 +25,6 @@
             <img class="scroll-indicator left" src="assets/images/scroll-arrow.svg" alt="circles">
             <img class="scroll-indicator right" src="assets/images/scroll-arrow.svg" alt="circles">
         </div>
-
-        <div class="section-spacing" id="education-start"></div>
 
         <div class="section education">
             <h1 class="section-header">Educational Qualification</h1>
@@ -63,8 +50,6 @@
             </div>
         </div>
 
-        <div class="section-spacing" id="about-me-start"></div>
-
         <div class="section about-me">
             <h1 class="section-header">About Me</h1>
             <div class="container">
@@ -81,16 +66,12 @@
             </div>
         </div>
 
-        <div class="section-spacing" id="experience-start"></div>
-
         <div class="section experience">
             <h1 class="section-header">Experience</h1>
             <p>I'm fluent in C, C++ and Python.</p>
             <p>I can design and implement websites myself.</p>
             <p>I can work with teams and manage large scale projects.</p> 
         </div>
-
-        <div class="section-spacing" id="projects-start"></div>
 
         <div class="section projects">
             <h1 class="section-header">Projects</h1>
@@ -132,8 +113,6 @@
             </div>
         </div>
 
-        <div class="section-spacing" id="about-me-start"></div>
-
         <div class="section made-with">
             <h1>Made with 
                 <span class="love"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">love</a><span class="animate"></span></span>, 
@@ -141,8 +120,6 @@
                 <span class="lenis"><a href="https://github.com/studio-freight/lenis" target="_blank">lenis.js</a><span class="animate"></span></span>.
             </h1>
         </div>
-
-        <div class="section-spacing" id="about-me-start"></div>
 
         <div class="section contacts">
             <h2>Get in touch</h2>
@@ -169,13 +146,15 @@
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
+
+createTrailer();
 applyLenisScroll();
 applyPortraitEffects();
+createLoadingBars(10);
 
 applyStartingAnimation();
 applyScrollTriggers();
 applyExperienceAnimation();
 applyProjectHoverEffect();
-
 </script>
 </html>
