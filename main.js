@@ -37,7 +37,7 @@ function createTrailer()
     };
 
     window.addEventListener('mousemove', (e) => {
-        const on_link = e.target.closest('a');
+        const on_link = e.target.closest('a:not(.nav-link)');
         animateTrailer(e, on_link !== null);
     });
 }
@@ -67,9 +67,9 @@ function applyLenisScroll()
     gsap.ticker.lagSmoothing(0);
 }
 
-function scrollToTop()
+function lenisScrollTo(target, d)
 {
-    lenis.scrollTo(0, { duration: 3, easing: (x) => { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; } });
+    lenis.scrollTo(target, { duration: d, easing: (x) => { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; } });
 }
 
 function applyStartingAnimation()

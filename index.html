@@ -21,6 +21,18 @@
                 <h1>Adhith Chand T</h1>
                 <p>Software Developer</p>
             </div>
+
+            <div class="navbar">
+                <ul>
+                    <li><a class="nav-link" onclick="lenisScrollTo('.section.education', 1)">education</a></li>
+                    <li><a class="nav-link" onclick="lenisScrollTo('.section.about-me', 1.5)">about me</a></li>
+                    <li><a class="nav-link" onclick="lenisScrollTo('.section.experience', 2)">experience</a></li>
+                    <li><a class="nav-link" onclick="lenisScrollTo('.section.projects', 2.5)">projects</a></li>
+                    <li><a class="nav-link" onclick="lenisScrollTo('.section.made-with', 2.75)">made with</a></li>
+                    <li><a class="nav-link" onclick="lenisScrollTo('.section.contacts', 3)">contacts</a></li>
+                </ul>
+            </div>
+
             <img class="circles" src="assets/images/circles.svg" alt="circles">
             <img class="scroll-indicator left" src="assets/images/scroll-arrow.svg" alt="circles">
             <img class="scroll-indicator right" src="assets/images/scroll-arrow.svg" alt="circles">
@@ -134,7 +146,7 @@
         </div>
 
         <footer>
-            <a onclick="scrollToTop()">Climb Back Up <img class="arrow" src="assets/images/arrow.svg" alt="arrow"></a>
+            <a onclick="lenisScrollTo('top', 3)">Climb Back Up <img class="arrow" src="assets/images/arrow.svg" alt="arrow"></a>
             <div class="divider"></div>
             <div class="content">
                 <p>©2023 Adhith Chand Thiruvath.</p>
