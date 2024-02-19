@@ -30,7 +30,8 @@ function createTrailer()
         const keyframes = {
             left: x + 'px',
             top: y + 'px',
-            scale: (interacting ? 3.0 : 1.0)
+            scale: (interacting ? 3.0 : 1.0),
+            easing: "ease-out"
         };
 
         trailer.animate(keyframes, { duration: 200, fill: "forwards" });
@@ -258,13 +259,15 @@ function applyProjectHoverEffect()
         var container = document.createElement("div");
         container.classList.add('word');
 
+        var delay  = 0.15 / text.length;
+
         for (let i = 0; i < text.length; ++i)
         {
             var letter = text.charAt(i);
             var s = document.createElement('span');
             s.classList.add("letter");
             s.innerHTML = letter.trim() === '' ? '\xa0' : letter;
-            s.style.setProperty('--delay', ((i + 1) * 0.03) + 's');
+            s.style.setProperty('--delay', ((i + 1) * delay) + 's');
 
             container.appendChild(s);
         }
