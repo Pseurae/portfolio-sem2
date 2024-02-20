@@ -96,6 +96,20 @@ a {
     filter: drop-shadow(rgba(0, 0, 0, 0.295) 0px 0.2rem 10px);
 }
 
+.hover-img {
+    left: 0;
+    top: 0;
+
+    position: fixed;
+    z-index: 99999;
+
+    pointer-events: none;
+
+    width: 400px;
+    scale: 0.0;
+    opacity: 0.0;    
+}
+
 body {
     margin: 0;
     font-family: 'neuemachina-light', 'monospace';
@@ -556,7 +570,7 @@ main {
                 border-radius: 10px;
                 border: 1px solid darkgray;
                 width: 60rem;
-                background-color: #494b4e;
+                background-color: #303133;
                 color: white;
             }
 

@@ -15,6 +15,8 @@
 </head>
 <body>
     <div class="trailer"></div>
+    <img class="hover-img" src="" alt="">
+
     <main>
         <div class="hero">
             <div class="name">
@@ -42,19 +44,19 @@
             <h1 class="section-header">Educational Qualification</h1>
             <div class="container">
                 <div class="line"></div>
-                <div class="listing">
+                <div class="listing" data-hover-image="assets/images/amrita-chennai.jpg">
                     <h3 class="qualification">B. Tech (Computer Science)</h3>
                     <p class="institution">Amrita Vishwa Vidyapeetham, Chennai</p>
                     <p class="year">2023 - 2027</p>
                 </div>
 
-                <div class="listing">
+                <div class="listing" data-hover-image="assets/images/chevayur.webp">
                     <h3 class="qualification">Class 12</h3>
                     <p class="institution">Bharatiya Vidya Bhavan, Chevayur</p>
                     <p class="year">2022</p>
                 </div>
 
-                <div class="listing">
+                <div class="listing" data-hover-image="assets/images/perumthiruthi.jpg">
                     <h3 class="qualification">Class 10</h3>
                     <p class="institution">Bharatiya Vidya Bhavan, Perumthiruthi</p>
                     <p class="year">2020</p>
@@ -178,6 +180,7 @@
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
+createHoverImg();
 createTrailer();
 applyLenisScroll();
 applyPortraitEffects();

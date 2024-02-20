@@ -19,6 +19,34 @@ function createLoadingBars(num)
     document.body.appendChild(container);
 }
 
+function createHoverImg()
+{
+    var hoverImg = document.querySelector('.hover-img');
+    const animateHoverImage = (e, interacting) => {
+        const x = e.clientX + 20, 
+              y = e.clientY - hoverImg.offsetHeight - 20;
+
+        const keyframes = {
+            left: x + 'px',
+            top: y + 'px',
+            scale: (interacting ? 1.0 : 0.0),
+            opacity: (interacting ? 1.0 : 0.0),
+            easing: "ease-out"
+        };
+
+        hoverImg.animate(keyframes, { duration: 500, fill: "forwards" });
+    };
+
+    window.addEventListener('mousemove', (e) => {
+        const interactable = e.target.closest('*[data-hover-image]'), 
+            interacting = interactable !== null;
+
+        animateHoverImage(e, interacting);
+        if (interacting && interactable.dataset.hoverImage !== null)
+            hoverImg.src = interactable.dataset.hoverImage;
+    });
+}
+
 function createTrailer()
 {
     const trailer = document.querySelector('.trailer');
@@ -38,8 +66,11 @@ function createTrailer()
     };
 
     window.addEventListener('mousemove', (e) => {
-        const on_link = e.target.closest('a:not(.nav-link), input, textarea');
-        animateTrailer(e, on_link !== null);
+        const interactable = e.target.closest('a:not(.nav-link), input, textarea'), 
+            interacting = interactable !== null;
+
+
+        animateTrailer(e, interacting);
     });
 }
 
