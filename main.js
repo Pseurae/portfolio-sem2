@@ -38,7 +38,7 @@ function createTrailer()
     };
 
     window.addEventListener('mousemove', (e) => {
-        const on_link = e.target.closest('a:not(.nav-link)');
+        const on_link = e.target.closest('a:not(.nav-link), input, textarea');
         animateTrailer(e, on_link !== null);
     });
 }
@@ -275,4 +275,9 @@ function applyProjectHoverEffect()
         header.appendChild(container);
         header.appendChild(container.cloneNode(true));
     }
+}
+
+function hideCursor()
+{
+    document.documentElement.style.cursor = 'none';
 }

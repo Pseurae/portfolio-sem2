@@ -2,6 +2,7 @@
 
 *, *::before, *::after {
     box-sizing: border-box;
+    cursor: none;
 }
 
 ::-webkit-scrollbar {
@@ -17,7 +18,7 @@
 
 html.lenis {
     height: auto;
-  }
+}
   
 .lenis.lenis-smooth {
     scroll-behavior: auto !important;
@@ -50,6 +51,10 @@ html.lenis {
 
 .section {
     padding: var(--section-padding) var(--side-padding);
+}
+
+a {
+    cursor: none;
 }
 
 .button {
@@ -122,7 +127,7 @@ footer {
         display: flex;
         gap: 1rem;
 
-        cursor: pointer;
+        // cursor: pointer;
 
 
         &:hover {
@@ -249,7 +254,7 @@ main {
                 font-size: 1.5rem;
                 position: relative;
                 padding: 0 0.25rem;
-                cursor: pointer;
+                // cursor: pointer;
 
                 &::before {
                     content: '';
@@ -518,6 +523,52 @@ main {
         .email {
             font-size: 2rem;
             color: white;
+        }
+
+        .message {
+            margin-bottom: 3rem;
+
+            h1 {
+                font-size: 5rem;
+            }
+
+            label {
+                display: block;
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+                font-family: 'neuemachina-regular';
+            }
+
+            div {
+                margin: 2rem 0;
+            }
+
+            input, textarea {
+                outline: none;
+                border: none;
+                padding: 1rem;
+                font-family: 'neuemachina-light';
+                font-size: 1.5rem;
+                cursor: none;
+            }
+
+            input[type=text], input[type=email], textarea {
+                border-radius: 10px;
+                border: 1px solid darkgray;
+                width: 60rem;
+                background-color: #494b4e;
+                color: white;
+            }
+
+            input[type=button] {
+                @extend .button;
+                background-color: transparent;
+                padding: 1rem 2rem;
+            }
+
+            textarea {
+                resize: none;
+            }
         }
 
         .btn-container {
