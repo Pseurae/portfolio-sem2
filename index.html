@@ -142,16 +142,19 @@
                     <div>
                         <label for="name">Your Name</label>
                         <input type="text" name="" id="name" autocomplete="off">
+                        <p class="error-msg" data-visible="false">Name can't be empty.</p>
                     </div>
                     <div>
                         <label for="email">Your email</label>
                         <input type="email" name="" id="email" autocomplete="off">
+                        <p class="error-msg" data-visible="false">Invalid Email.</p>
                     </div>
                     <div>
                         <label for="message">Message</label>
                         <textarea name="" id="message" cols="60" rows="10" autocomplete="off"></textarea>
+                        <p class="error-msg" data-visible="false">Message can't be empty.</p>
                     </div>
-                    <input type="button" value="Send me a message!">
+                    <input type="button" value="Send me a message!" onclick="checkFormValidity()">
                 </form>
             </div>
 
@@ -191,5 +194,6 @@ applyScrollTriggers();
 applyExperienceAnimation();
 applyProjectHoverEffect();
 hideCursor();
+setFormListeners();
 </script>
 </html>

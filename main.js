@@ -312,3 +312,47 @@ function hideCursor()
 {
     document.documentElement.style.cursor = 'none';
 }
+
+function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+
+function checkFormValidity()
+{
+    var formElements = [
+        { id: "#name", f: (s) => { return Boolean(s); } },
+        { id: "#email", f: validateEmail },
+        { id: "#message", f: (s) => { return Boolean(s); } },
+    ];
+
+    formElements.forEach((o) => {
+        const el = document.querySelector(o.id);
+        const msg = document.querySelector(o.id + " + .error-msg");
+
+        if (o.f(el.value)) {
+            msg.dataset.visible = false;
+        } else {
+            msg.dataset.visible = true;
+        }
+    });
+}
+
+function setFormListeners()
+{
+    var formElements = [
+        "#name",
+        "#email",
+        "#message"
+    ];
+
+    formElements.forEach(id => {
+        const el = document.querySelector(id);
+        el.addEventListener('input', (e) => {
+            if (!e.isComposing) {
+                const msg = document.querySelector(id + " + .error-msg");
+                msg.dataset.visible = false;
+            }
+        });
+    });
+}

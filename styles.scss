@@ -54,7 +54,7 @@ html.lenis {
 }
 
 a {
-    cursor: none;
+    // cursor: none;
 }
 
 .button {
@@ -468,7 +468,6 @@ main {
 
     .made-with {
         h1 {
-            cursor: default;
             font-family: 'neuemachina-ultrabold';
             font-size: 8rem;
             text-align: center;
@@ -557,13 +556,23 @@ main {
                 margin: 2rem 0;
             }
 
+            .error-msg {
+                color: #FF4040;
+                font-size: 1.5rem;
+                display: none;
+            }
+
+            .error-msg[data-visible=true] {
+                display: block;
+            }
+
             input, textarea {
                 outline: none;
                 border: none;
                 padding: 1rem;
                 font-family: 'neuemachina-light';
                 font-size: 1.5rem;
-                cursor: none;
+                // cursor: none;
             }
 
             input[type=text], input[type=email], textarea {
@@ -572,6 +581,10 @@ main {
                 width: 60rem;
                 background-color: #303133;
                 color: white;
+            }
+
+            input[data-invalid=true], textarea[data-invalid=true] {
+                border-color: #FF4040;
             }
 
             input[type=button] {
