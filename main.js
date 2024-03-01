@@ -23,13 +23,7 @@ function createHoverImg()
 {
     var hoverImg = document.querySelector('.hover-img');
     const animateHoverImage = (e, interacting) => {
-        const x = e.clientX + 20, 
-              y = e.clientY - hoverImg.offsetHeight - 20;
-
         const keyframes = {
-            left: x + 'px',
-            top: y + 'px',
-            scale: (interacting ? 1.0 : 0.0),
             opacity: (interacting ? 1.0 : 0.0),
             easing: "ease-out"
         };
@@ -43,13 +37,16 @@ function createHoverImg()
 
         animateHoverImage(e, interacting);
         if (interacting && interactable.dataset.hoverImage !== null)
-            hoverImg.src = interactable.dataset.hoverImage;
+            hoverImg.style.setProperty("--image", "url(" + interactable.dataset.hoverImage + ")");
     });
 }
 
 function createTrailer()
 {
-    const trailer = document.querySelector('.trailer');
+    const trailer = document.createElement('div');
+    trailer.classList.add('trailer');
+
+    document.body.appendChild(trailer);
 
     const animateTrailer = (e, interacting) => {
         const x = e.clientX - trailer.offsetWidth / 2, 
@@ -149,6 +146,22 @@ function applyStartingAnimation()
 
 function applyScrollTriggers()
 {
+    // Navigation
+    gsap.set('.floating-nav .trigger', { opacity: 0.0, rotate: '-45deg', x: "-200%" });
+
+    ScrollTrigger.create({
+        trigger: '.hero',
+        start: 'bottom 80%',
+        end: 'bottom 50%',
+        onLeave: () => {
+            gsap.to('.floating-nav .trigger', { opacity: 1.0, duration: 0.75, x: '0%', rotate: '0deg', ease: 'back.inOut' });
+        },
+        onEnterBack: () => {
+            gsap.to('.floating-nav .trigger', { opacity: 0.0, duration: 0.75, x: '-100%', rotate: '-45deg', ease: 'back.inOut' });
+            closeNavbar();
+        },
+    })
+
     // Hero Section
     gsap.to(
         '.hero',
@@ -160,8 +173,8 @@ function applyScrollTriggers()
                 scrub: 1,
             },
             opacity: 0,
-            ease: "power2.inOut"
-        }
+            ease: "power2.inOut",
+        },
     );
 
     // Educational Qualification
@@ -229,34 +242,34 @@ function applyScrollTriggers()
     // )
 
     // Made with
-    var madeWithTimeline = gsap.timeline({ scrollTrigger: {
-        trigger: '.section.made-with',
-        start: 'top 60%',
-    }});
+    // var madeWithTimeline = gsap.timeline({ scrollTrigger: {
+    //     trigger: '.section.made-with',
+    //     start: 'top 60%',
+    // }});
 
-    madeWithTimeline.from(
-        '.section.made-with .love .animate', 0.5,
-        {
-            opacity: 0,
-            x: 50
-        }
-    )
+    // madeWithTimeline.from(
+    //     '.section.made-with .love .animate', 0.5,
+    //     {
+    //         opacity: 0,
+    //         x: 50
+    //     }
+    // )
 
-    madeWithTimeline.from(
-        '.section.made-with .gsap .animate', 0.5,
-        {
-            opacity: 0,
-            x: -50
-        }
-    )
+    // madeWithTimeline.from(
+    //     '.section.made-with .gsap .animate', 0.5,
+    //     {
+    //         opacity: 0,
+    //         x: -50
+    //     }
+    // )
 
-    madeWithTimeline.from(
-        '.section.made-with .lenis .animate', 0.5,
-        {
-            opacity: 0,
-            y: 50
-        }
-    )
+    // madeWithTimeline.from(
+    //     '.section.made-with .lenis .animate', 0.5,
+    //     {
+    //         opacity: 0,
+    //         y: 50
+    //     }
+    // )
 }
 
 function applyExperienceAnimation()
@@ -282,7 +295,9 @@ function applyExperienceAnimation()
 
 function applyProjectHoverEffect()
 {
-    for (const header of document.querySelectorAll('.projects .container h2'))
+    const projectHeaders = document.querySelectorAll('.projects .container h2');
+
+    for (const header of projectHeaders)
     {
         var text = header.innerHTML;
         header.innerHTML = "";
@@ -306,11 +321,6 @@ function applyProjectHoverEffect()
         header.appendChild(container);
         header.appendChild(container.cloneNode(true));
     }
-}
-
-function hideCursor()
-{
-    document.documentElement.style.cursor = 'none';
 }
 
 function validateEmail(email) {
@@ -355,4 +365,107 @@ function setFormListeners()
             }
         });
     });
+}
+
+function closeNavbar()
+{
+    const sidebar = document.querySelector('.floating-nav .sidebar');
+    const btn = document.querySelector('.floating-nav .trigger');
+
+    gsap.to(
+        sidebar, 1.0, {
+            x: "-100%",
+            ease: 'power4.inOut'
+        }
+    );
+    sidebar.classList.remove('open');
+    btn.classList.remove('open');
+}
+
+function toggleNavbar()
+{
+    const sidebar = document.querySelector('.floating-nav .sidebar');
+    const btn = document.querySelector('.floating-nav .trigger');
+
+    if (sidebar.classList.contains('open')) {
+        gsap.to(
+            sidebar, 1.0, {
+                x: "-100%",
+                ease: 'power4.inOut'
+            }
+        );
+        sidebar.classList.remove('open');
+        btn.classList.remove('open');
+    } else {
+        gsap.to(
+            sidebar, 1.0, {
+                x: "0%",
+                ease: 'power4.inOut',
+            },
+        );
+
+        gsap.from(
+            '.floating-nav .sidebar ul li', {
+                // x: '-100%',
+                // opacity: 0.0,
+                clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)',
+
+                duration: 1.0,
+                delay: 0.4,
+                stagger: { amount: 0.5 },
+                ease: 'power4.inOut',
+            }
+        );
+
+        sidebar.classList.add('open');
+        btn.classList.add('open');
+    }
+}
+
+function navScroll(target, d)
+{
+    closeNavbar();
+    lenisScrollTo(target, d);
+}
+
+async function setProjects()
+{
+    const content = await (await fetch('./assets/content/projects.json')).json();
+    const container = document.querySelector(".projects .container");
+    const templateCode = document.getElementById("project-listing-template").innerHTML;
+    const template = new t(templateCode);
+
+    for (const obj of content)
+        container.innerHTML += template.render(obj);
+}
+
+async function setEducationPoints()
+{
+    const content = await (await fetch('./assets/content/education.json')).json();
+    const container = document.querySelector(".education .main-container .container");
+
+    const templateCode = document.getElementById("education-listing-template").innerHTML;
+    const template = new t(templateCode);
+
+    for (const obj of content)
+        container.innerHTML += template.render(obj);
+}
+
+async function startWebsite()
+{
+    await setProjects();
+    await setEducationPoints();
+
+    createTrailer();
+
+    createHoverImg();
+    applyLenisScroll();
+    applyPortraitEffects();
+    createLoadingBars(10);
+
+    applyStartingAnimation();
+    applyScrollTriggers();
+    applyExperienceAnimation();
+    applyProjectHoverEffect();
+    setFormListeners();
 }
