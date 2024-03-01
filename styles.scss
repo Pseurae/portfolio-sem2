@@ -104,7 +104,6 @@ button {
     z-index: 2;
 
     .trigger {
-        filter: drop-shadow(rgba(0, 0, 0, 0.295) 0px 0.2rem 10px);
         position: fixed;
         z-index: 3;
         background: none;
@@ -124,9 +123,18 @@ button {
         font-family: 'neuemachina-regular';
         font-size: 2rem;
 
+        transition: background-color 0.25s;
+
         // &:hover + .sidebar {
         //     transform: translateX(0%);
         // }
+
+        &:hover {
+            background-color: #000;
+            .xmark, .bars {
+                filter: opacity(0.8);
+            }
+        }
 
         .xmark, .bars {
             display: none;
@@ -139,7 +147,8 @@ button {
             height: 2rem;
             margin: auto;
 
-            filter: opacity(0.9) invert(1.0);
+            filter: opacity(0.8) invert(1.0);
+            transition: filter 0.25s;
         }
 
         &.open > .xmark {

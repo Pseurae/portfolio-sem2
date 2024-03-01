@@ -62,13 +62,16 @@ function createTrailer()
         trailer.animate(keyframes, { duration: 200, fill: "forwards" });
     };
 
-    window.addEventListener('mousemove', (e) => {
+    const checkInteraction = (e) => {
         const interactable = e.target.closest('a:not(.nav-link), input, textarea'), 
             interacting = interactable !== null;
 
 
         animateTrailer(e, interacting);
-    });
+    };
+
+    window.addEventListener('mousemove', checkInteraction);
+    window.addEventListener('wheel', checkInteraction);
 }
 
 function applyPortraitEffects()
