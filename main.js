@@ -433,7 +433,7 @@ function navScroll(target, d)
 
 async function setProjects()
 {
-    const content = await (await fetch('./assets/content/projects.json')).json();
+    const content = projectsList;
     const container = document.querySelector(".projects .container");
     const templateCode = document.getElementById("project-listing-template").innerHTML;
     const template = new t(templateCode);
@@ -444,7 +444,7 @@ async function setProjects()
 
 async function setEducationPoints()
 {
-    const content = await (await fetch('./assets/content/education.json')).json();
+    const content = educationPoints;
     const container = document.querySelector(".education .main-container .container");
 
     const templateCode = document.getElementById("education-listing-template").innerHTML;
