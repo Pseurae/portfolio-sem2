@@ -43,35 +43,38 @@ function createHoverImg()
 
 function createTrailer()
 {
+    let interacting = false;
+
     const trailer = document.createElement('div');
     trailer.classList.add('trailer');
 
     document.body.appendChild(trailer);
 
-    const animateTrailer = (e, interacting) => {
-        const x = e.clientX - trailer.offsetWidth / 2, 
-              y = e.clientY - trailer.offsetHeight / 2;
+    const moveTrailer = (ex, ey) => {
+        const x = ex - trailer.offsetWidth / 2, 
+              y = ey - trailer.offsetHeight / 2;
 
-        const keyframes = {
-            left: x + 'px',
-            top: y + 'px',
-            scale: (interacting ? 3.0 : 1.0),
-            easing: "ease-out"
-        };
-
-        trailer.animate(keyframes, { duration: 200, fill: "forwards" });
+        trailer.style.setProperty('--x', x + "px");
+        trailer.style.setProperty('--y', y + "px");
     };
 
-    const checkInteraction = (e) => {
-        const interactable = e.target.closest('a:not(.nav-link), input, textarea'), 
-            interacting = interactable !== null;
-
-
-        animateTrailer(e, interacting);
+    const animateTrailer = (interacting) => {
+        trailer.style.setProperty('--scale', (interacting ? 3.0 : 1.0));
     };
 
-    window.addEventListener('mousemove', checkInteraction);
-    window.addEventListener('wheel', checkInteraction);
+    document.querySelectorAll('a:not(.nav-link), input, textarea').forEach((el) => {
+        el.addEventListener("mouseenter", (e) => {
+            animateTrailer(true);
+        })
+
+        el.addEventListener("mouseleave", (e) => {
+            animateTrailer(false);
+        })
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        moveTrailer(e.clientX, e.clientY);
+    });
 }
 
 function applyPortraitEffects()
@@ -116,17 +119,17 @@ function applyStartingAnimation()
         },
     );
 
-    // const splitText = new SplitType(".hero .name h1");
-    // gsap.from(
-    //     splitText.chars, 1.5,
-    //     {
-    //         y: 300,
-    //         opacity: 0,
-    //         delay: 1.5,
-    //         stagger: { amount: 0.2 },
-    //         ease: 'power4.inOut'
-    //     }
-    // );
+    const splitText = new SplitType(".hero .name h1");
+    gsap.from(
+        splitText.chars, 1.5,
+        {
+            y: 300,
+            opacity: 0,
+            delay: 1.5,
+            stagger: { amount: 0.2 },
+            ease: 'power4.inOut'
+        }
+    );
 
     gsap.from(
         '.hero .name p', 1.5,
@@ -137,14 +140,14 @@ function applyStartingAnimation()
         }
     );
 
-    gsap.from(
-        '.hero .circles', 1.5,
-        {
-            scale: 0,
-            delay: 1.5,
-            ease: 'power4.out'
-        }
-    );
+    // gsap.from(
+    //     '.hero .circles', 1.5,
+    //     {
+    //         scale: 0,
+    //         delay: 1.5,
+    //         ease: 'power4.out'
+    //     }
+    // );
 }
 
 function applyScrollTriggers()
@@ -154,8 +157,8 @@ function applyScrollTriggers()
 
     ScrollTrigger.create({
         trigger: '.hero',
-        start: 'bottom 80%',
-        end: 'bottom 50%',
+        start: 'bottom 90%',
+        end: 'bottom 60%',
         onLeave: () => {
             gsap.to('.floating-nav .trigger', { opacity: 1.0, duration: 0.75, x: '0%', rotate: '0deg', ease: 'back.inOut' });
         },
@@ -392,33 +395,33 @@ function toggleNavbar()
 
     if (sidebar.classList.contains('open')) {
         gsap.to(
-            sidebar, 1.0, {
+            sidebar, 0.75, {
                 x: "-100%",
-                ease: 'power4.inOut'
+                ease: 'power4.out'
             }
         );
         sidebar.classList.remove('open');
         btn.classList.remove('open');
     } else {
         gsap.to(
-            sidebar, 1.0, {
+            sidebar, 0.75, {
                 x: "0%",
-                ease: 'power4.inOut',
+                ease: 'power4.out',
             },
         );
 
-        gsap.from(
-            '.floating-nav .sidebar ul li', {
-                // x: '-100%',
-                // opacity: 0.0,
-                clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)',
+        // gsap.from(
+        //     '.floating-nav .sidebar ul li', {
+        //         // x: '-100%',
+        //         // opacity: 0.0,
+        //         clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)',
 
-                duration: 1.0,
-                delay: 0.4,
-                stagger: { amount: 0.5 },
-                ease: 'power4.inOut',
-            }
-        );
+        //         duration: 0.75,
+        //         delay: 0.4,
+        //         stagger: { amount: 0.4 },
+        //         ease: 'power2.inOut',
+        //     }
+        // );
 
         sidebar.classList.add('open');
         btn.classList.add('open');
