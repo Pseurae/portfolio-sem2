@@ -517,27 +517,71 @@ main {
     }
 
     .experience {
-        p {
-            position: relative;
-            font-family: 'neuemachina-regular';
-            font-size: 5.5rem;
-            margin: 0;
-            overflow: hidden;
-
-            .overlay {
-                position: absolute;
-                pointer-events: none;
-                width: 100%;
-                height: 100%;
-                background-color: var(--body-bg);
-                opacity: 70%;
-                left: 0;
-                top: 0;
+        .manifesto {
+            > p {
+                position: relative;
+                font-family: 'neuemachina-regular';
+                font-size: 5.5rem;
+                margin: 0;
+                overflow: hidden;
+    
+                .overlay {
+                    position: absolute;
+                    pointer-events: none;
+                    width: 100%;
+                    height: 100%;
+                    background-color: var(--body-bg);
+                    opacity: 70%;
+                    left: 0;
+                    top: 0;
+                }
+            }
+    
+            > p:not(:last-child) {
+                margin-bottom: 2rem;
             }
         }
 
-        p:not(:last-child) {
-            margin-bottom: 2rem;
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+
+            margin-bottom: 10rem;
+
+            .card {
+                padding: 4rem;
+                border: 2px solid #fff;
+                border-radius: 25px;
+                transition: color 0.25s, background-color 0.25s;
+
+                &:hover {
+                    color: #000;
+                    background-color: #fff;
+
+                    img {
+                        filter: invert(0.0);
+                    }
+                }
+
+                img {
+                    transition: filter 0.25s;
+
+                    height: 8rem;
+                    filter: invert(1.0);
+                    margin-bottom: 2rem;
+                }
+
+                h1 {
+                    margin: 0;
+                    font-size: 3rem;
+                }
+
+                p {
+                    font-size: 1.5rem;
+                    margin-bottom: 0;
+                }
+            }
         }
     }
 
@@ -549,16 +593,37 @@ main {
                 display: flex;
                 align-items: center;
                 padding: 2rem 0;
+                position: relative;
 
                 &:hover {
                     h2 > .word > .letter {
                         transform: translateY(-100%);
                     }
 
+                    .bg-img {
+                        opacity: 0.25;
+                    }
+
                     // h2 > .word:first-child > .letter {
                     //     opacity: 0;
                     // }
                 }
+
+                .bg-img {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+
+                    width: 100%;
+                    height: 100%;
+                    z-index: -1;
+                    background-size: cover;
+
+                    opacity: 0.0;
+                    
+                    transition: opacity 0.25s;
+                }
+                
 
                 h2 {
                     font-family: 'neuemachina-ultrabold';
@@ -661,16 +726,55 @@ main {
     }
 
     .contacts {
-        .email {
-            font-size: 2rem;
-            color: white;
+        a {
+            font-size: 1.5rem;
+            color: #fffb;
+            text-decoration: none;
+
+            &:hover {
+                color: #ffe8a9;
+                text-decoration: underline;
+            }
+        }
+
+        h1 {
+            font-size: 5rem;
         }
 
         .message {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 5rem;
             margin-bottom: 3rem;
 
-            h1 {
-                font-size: 5rem;
+            form {
+                grid-column: span 7 / span 7;
+
+                div {
+                    margin-bottom: 2rem;
+                }
+            }
+
+            .container {
+                grid-column: span 3 / span 3;
+                grid-column-start: 9;
+                
+                div {
+                    margin-bottom: 3rem;
+                }
+
+                h2 {
+                    margin-bottom: 0.25rem;
+                }
+
+                ul {
+                    margin: 0;
+                    padding: 0;
+
+                    li {
+                        list-style-type: none;
+                    }
+                }
             }
 
             label {
@@ -678,10 +782,6 @@ main {
                 font-size: 2rem;
                 margin-bottom: 0.5rem;
                 font-family: 'neuemachina-regular';
-            }
-
-            div {
-                margin: 2rem 0;
             }
 
             .error-msg {
@@ -705,7 +805,7 @@ main {
             input[type=text], input[type=email], textarea {
                 border-radius: 10px;
                 border: 1px solid darkgray;
-                width: 60rem;
+                width: 100%;
                 background-color: #303133;
                 color: white;
             }

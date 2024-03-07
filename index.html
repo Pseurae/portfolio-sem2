@@ -19,6 +19,7 @@
 <body>
     <script type="template-code" id="project-listing-template">
         <a class="listing" href="{{=link}}" target="_blank">
+            <div class="bg-img" style="background-image: url('{{=img}}')"></div>
             <h2>{{=name}}</h2>
             <p>{{=platform}}</p>
         </a>
@@ -122,9 +123,34 @@
 
         <div class="section experience">
             <h1 class="section-header">Experience</h1>
-            <p>I am fluent in C, C++ and Python.</p>
-            <p>I have designed and implemented several websites myself too.</p>
-            <p>I have worked with teams and managed large scale projects.</p>
+
+            <div class="cards">
+                <div class="card">
+                    <img src="assets/images/microchip-solid.svg" alt="">
+                    <h1>Embedded Programming</h1>
+                    <p>I've worked with ATMEL microcontrollers and Game Boy Advance, thus having experience in low-level C and THUMB assembly.</p>
+                </div>
+
+                <div class="card">
+                    <img src="assets/images/pen-solid.svg" alt="">
+                    <h1>Web<br>Design</h1>
+                    <p>I can design user interfaces and also implement my design in Vue, React or normal HTML and CSS code.</p>
+                </div>
+                
+                <div class="card">
+                    <img src="assets/images/gamepad-solid.svg" alt="">
+                    <h1>Game<br>Development</h1>
+                    <p>I have experience in graphics programming (Shader Development, Renderer abstractions) and scripting.</p>
+                </div>
+            </div>
+
+
+            <div class="manifesto">
+                <h1>Manifesto</h1>
+                <p>I am fluent in C, C++ and Python.</p>
+                <p>I have designed and implemented several websites myself too.</p>
+                <p>I have worked with teams and managed large scale projects.</p>
+            </div>
         </div>
 
         <div class="section projects">
@@ -142,8 +168,9 @@
         </div> -->
 
         <div class="section contacts">
+            <h1>Want to work together?</h1>
+
             <div class="message">
-                <h1>Want to work together?</h1>
                 <form action="" method="post">
                     <div>
                         <label for="name">Your Name</label>
@@ -162,24 +189,41 @@
                     </div>
                     <input type="button" value="Send me a message!" onclick="checkFormValidity()">
                 </form>
+
+                <div class="container">
+                    <div>
+                        <h2>For further queries...</h2>
+                        <a href="mailto:adhith.chand@gmail.com" class="email">adhith.chand@gmail.com</a>    
+                    </div>
+
+                    <div>
+                        <h2>Alternative Contacts</h2>
+                        <ul>
+                            <li><a href="https://www.linkedin.com/in/adhith-chand-b62a08133/" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://www.github.com/Pseurae/" target="_blank">GitHub</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">X / Twitter</a></li>
+                            <li><a href="https://www.codepen.io/Adhith-Chand" target="_blank">CodePen</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
-            <h2>Get in touch</h2>
-            <a href="mailto:adhith.chand@gmail.com" class="email">adhith.chand@gmail.com</a>
+            <!-- <h2>Get in touch</h2>
+            <a href="mailto:adhith.chand@gmail.com" class="email">adhith.chand@gmail.com</a> -->
 
-            <div class="btn-container">
+            <!-- <div class="btn-container">
                 <a href="https://www.linkedin.com/in/adhith-chand-b62a08133/" target="_blank">LinkedIn</a>
                 <a href="https://www.github.com/Pseurae/" target="_blank">GitHub</a>
                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">X / Twitter</a>
                 <a href="https://www.codepen.io/Adhith-Chand" target="_blank">CodePen</a>
-            </div>
+            </div> -->
         </div>
 
         <footer>
             <a onclick="lenisScrollTo('top', 3)">Climb Back Up <img class="arrow" src="assets/images/arrow.svg" alt="arrow"></a>
             <div class="divider"></div>
             <div class="content">
-                <p>©2023 Adhith Chand Thiruvath.</p>
+                <p>© 2023 Adhith Chand Thiruvath.</p>
                 <p class="barcode">Adhith Chand</p>
             </div>
         </footer>
