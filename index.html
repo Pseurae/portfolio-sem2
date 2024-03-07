@@ -43,7 +43,7 @@
         <div class="sidebar">
             <ul>
                 <li><a class="nav-link" onclick="navScroll('.hero', 1.5); closeNavbar()">hero</a></li>
-                <li><a class="nav-link" onclick="navScroll('.section.education', 1.5)">education</a></li>
+                <!-- <li><a class="nav-link" onclick="navScroll('.section.education', 1.5)">education</a></li> -->
                 <li><a class="nav-link" onclick="navScroll('.section.about-me', 1.5)">about me</a></li>
                 <li><a class="nav-link" onclick="navScroll('.section.experience', 1.5)">experience</a></li>
                 <li><a class="nav-link" onclick="navScroll('.section.projects', 1.5)">projects</a></li>
@@ -66,42 +66,13 @@
 
             <div class="navbar">
                 <ul>
-                    <li><a class="nav-link" onclick="lenisScrollTo('.section.education', 1)">education</a></li>
-                    <li><a class="nav-link" onclick="lenisScrollTo('.section.about-me', 1.5)">about me</a></li>
-                    <li><a class="nav-link" onclick="lenisScrollTo('.section.experience', 2)">experience</a></li>
-                    <li><a class="nav-link" onclick="lenisScrollTo('.section.projects', 2.5)">projects</a></li>
+                    <!-- <li><a class="nav-link" onclick="lenisScrollTo('.section.education', 1)">education</a></li> -->
+                    <li><a class="nav-link" onclick="lenisScrollTo('.section.about-me', 1)">about me</a></li>
+                    <li><a class="nav-link" onclick="lenisScrollTo('.section.experience', 1.5)">experience</a></li>
+                    <li><a class="nav-link" onclick="lenisScrollTo('.section.projects', 2)">projects</a></li>
                     <!-- <li><a class="nav-link" onclick="lenisScrollTo('.section.made-with', 2.75)">made with</a></li> -->
-                    <li><a class="nav-link" onclick="lenisScrollTo('.section.contacts', 3)">contacts</a></li>
+                    <li><a class="nav-link" onclick="lenisScrollTo('.section.contacts', 2.5)">contacts</a></li>
                 </ul>
-            </div>
-        </div>
-
-        <div class="section education">
-            <h1 class="section-header">Educational Qualification</h1>
-            <div class="main-container">
-                <div class="container">
-                    <div class="line"></div>
-                    <!-- <div class="listing" data-hover-image="assets/images/amrita-chennai.jpg">
-                        <h3 class="qualification">B. Tech (Computer Science)</h3>
-                        <p class="institution">Amrita Vishwa Vidyapeetham, Chennai</p>
-                        <p class="year">2023 - 2027</p>
-                    </div>
-    
-                    <div class="listing" data-hover-image="assets/images/chevayur.webp">
-                        <h3 class="qualification">Class 12</h3>
-                        <p class="institution">Bharatiya Vidya Bhavan, Chevayur</p>
-                        <p class="year">2022</p>
-                    </div>
-    
-                    <div class="listing" data-hover-image="assets/images/perumthiruthi.jpg">
-                        <h3 class="qualification">Class 10</h3>
-                        <p class="institution">Bharatiya Vidya Bhavan, Perumthiruthi</p>
-                        <p class="year">2020</p>
-                    </div> -->
-                </div>
-                <div class="img-container">
-                    <div class="hover-img"></div>
-                </div>
             </div>
         </div>
 
@@ -114,6 +85,35 @@
                     <p>I also design and develop websites in my free time too.</p>
                     <p>When I'm not developing or designing, I enjoy football, or the occasional gaming session.</p>
                     <p>I strive to create applications that performant, scalable and cross-platform.</p>
+
+                    <div class="education">
+                        <h1>Educational Qualification</h1>
+                        <div class="main-container">
+                            <div class="container">
+                                <div class="line"></div>
+                                <!-- <div class="listing" data-hover-image="assets/images/amrita-chennai.jpg">
+                                    <h3 class="qualification">B. Tech (Computer Science)</h3>
+                                    <p class="institution">Amrita Vishwa Vidyapeetham, Chennai</p>
+                                    <p class="year">2023 - 2027</p>
+                                </div>
+                
+                                <div class="listing" data-hover-image="assets/images/chevayur.webp">
+                                    <h3 class="qualification">Class 12</h3>
+                                    <p class="institution">Bharatiya Vidya Bhavan, Chevayur</p>
+                                    <p class="year">2022</p>
+                                </div>
+                
+                                <div class="listing" data-hover-image="assets/images/perumthiruthi.jpg">
+                                    <h3 class="qualification">Class 10</h3>
+                                    <p class="institution">Bharatiya Vidya Bhavan, Perumthiruthi</p>
+                                    <p class="year">2020</p>
+                                </div> -->
+                            </div>
+                            <!-- <div class="img-container">
+                                <div class="hover-img"></div>
+                            </div> -->
+                        </div>
+                    </div>
                 </div>
                 <div class="portrait-container">
                     <img class="portrait" src="assets/images/v10_194.jpg" alt="my-photo">
@@ -218,16 +218,48 @@
                 <a href="https://www.codepen.io/Adhith-Chand" target="_blank">CodePen</a>
             </div> -->
         </div>
-
-        <footer>
-            <a onclick="lenisScrollTo('top', 3)">Climb Back Up <img class="arrow" src="assets/images/arrow.svg" alt="arrow"></a>
-            <div class="divider"></div>
-            <div class="content">
-                <p>© 2023 Adhith Chand Thiruvath.</p>
-                <p class="barcode">Adhith Chand</p>
-            </div>
-        </footer>
+        <div class="footer-divider"></div>
     </main>
+    <footer>
+        <!-- <a onclick="lenisScrollTo('top', 3)">Climb Back Up <img class="arrow" src="assets/images/arrow.svg" alt="arrow"></a> -->
+
+        <div class="lists">
+            <div class="link-list">
+                <h1>Contacts</h1>
+                <ul>
+                    <li><a href="">LinkedIn</a></li>
+                    <li><a href="">GitHub</a></li>
+                    <li><a href="">CodePen</a></li>
+                </ul>
+            </div>
+    
+            <div class="link-list">
+                <h1>Resources</h1>
+                <ul>
+                    <li><a href="https://www.gsap.com/">GSAP</a></li>
+                    <li><a href="https://github.com/studio-freight/lenis">lenis.js</a></li>
+                    <li><a href="https://fontawesome.com/">FontAwesome</a></li>
+                </ul>
+            </div>
+    
+            <div class="link-list">
+                <h1>Fonts Used</h1>
+                <ul>
+                    <li><a style="font-family: 'neuemachina-light';" href="https://pangrampangram.com/products/neue-machina">Neue Machina</a></li>
+                    <li><a href="https://fonts.google.com/specimen/Libre+Barcode+128">Libre Barcode</a></li>
+                    <li><a style="font-family: 'against';" href="https://177studio.com/product/against-font/">Against</a></li>
+                </ul>
+            </div>
+
+            <a class="climb-up-btn" onclick="lenisScrollTo('top', 3)">Climb Back Up <img class="arrow" src="assets/images/arrow.svg" alt="arrow"></a>
+        </div>
+
+
+        <div class="content">
+            <p>© 2023 Adhith Chand Thiruvath.</p>
+            <p class="barcode">Adhith Chand</p>
+        </div>
+    </footer>
 </body>
 
 <script>

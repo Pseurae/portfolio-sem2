@@ -185,11 +185,11 @@ function applyScrollTriggers()
 
     // Educational Qualification
     gsap.from(
-        '.section.education .container .listing', 1.0,
+        '.education .container .listing', 1.0,
         {
             scrollTrigger: {
-                trigger: '.section.education .section-header',
-                start: 'top 60%',
+                trigger: '.education h1',
+                start: 'bottom 80%',
             },
             x: 100,
             opacity: 0,
@@ -199,11 +199,11 @@ function applyScrollTriggers()
     );
 
     gsap.from(
-        '.section.education .container .line', 2.0,
+        '.education .container .line', 2.0,
         {
             scrollTrigger: {
-                trigger: '.section.education .section-header',
-                start: 'top 40%',
+                trigger: '.education h1',
+                start: 'bottom 85%',
             },
             '--height': '0%',
             ease: 'power3.inOut'
@@ -464,7 +464,7 @@ async function startWebsite()
 
     createTrailer();
 
-    createHoverImg();
+    // createHoverImg();
     applyLenisScroll();
     applyPortraitEffects();
     createLoadingBars(10);
