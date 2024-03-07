@@ -257,9 +257,14 @@ footer {
 
         ul {
             padding: 0;
-            
+
             li {
                 list-style: none;
+                margin-bottom: 0.25rem;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
 
                 a {
                     color: #fff;
@@ -278,6 +283,8 @@ footer {
     .climb-up-btn {
         @extend .button;
         height: fit-content;
+
+        align-self: center;
 
         padding-left: 2rem;
         padding-right: 2rem;
