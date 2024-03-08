@@ -1,3 +1,57 @@
+const educationPoints = [
+    {
+        "qualification": "B. Tech (Computer Science)",
+        "institution": "Amrita Vishwa Vidyapeetham, Chennai",
+        "timespan": "2023 - 2027",
+        "img": "assets/images/education/amrita-chennai.jpg"
+    },
+    {
+        "qualification": "Class 12",
+        "institution": "Bharatiya Vidya Bhavan, Chevayur",
+        "timespan": "2022",
+        "img": "assets/images/education/chevayur.webp"
+    },
+    {
+        "qualification": "Class 10",
+        "institution": "Bharatiya Vidya Bhavan, Perumthiruthi",
+        "timespan": "2020",
+        "img": "assets/images/education/perumthiruthi.jpg"
+    }
+];
+
+const projectsList = [
+    {
+        "name": "gible",
+        "platform": "GitHub",
+        "link": "https://github.com/Pseurae/gible",
+        "img": "assets/images/projects/gible.webp"
+    },
+    {
+        "name": "WintermuteV3",
+        "platform": "GitHub",
+        "link": "https://github.com/WretchedTeam/WintermuteV3",
+        "img": "assets/images/projects/project-wintermute.webp"
+    },
+    {
+        "name": "rmnd",
+        "platform": "GitHub",
+        "link": "https://github.com/Pseurae/rmnd",
+        "img": "assets/images/projects/rmnd.png"
+    },
+    {
+        "name": "snakewood-improved",
+        "platform": "GitHub",
+        "link": "https://github.com/Pseurae/snakewood-improved",
+        "img": "assets/images/projects/snakewood-improved.png"
+    },
+    {
+        "name": "Wintermute Design",
+        "platform": "Figma",
+        "link": "https://www.figma.com/file/OcQTJ0ahsvwJZRTuvac9xw/Wintermute-V3---Desktop?type=design&node-id=0%3A1&mode=design&t=abCm7g4p8J7Lxq0q-1",
+        "img": "assets/images/projects/project-wintermute.webp"
+    }
+];
+
 const lenis = new Lenis();
 
 function createLoadingBars(num)
@@ -62,7 +116,7 @@ function createTrailer()
         trailer.style.setProperty('--scale', (interacting ? 3.0 : 1.0));
     };
 
-    document.querySelectorAll('a:not(.nav-link), input, textarea').forEach((el) => {
+    document.querySelectorAll('a:not(.nav-link), input, textarea, .cards > .card').forEach((el) => {
         el.addEventListener("mouseenter", (e) => {
             animateTrailer(true);
         })
@@ -102,9 +156,36 @@ function applyLenisScroll()
     gsap.ticker.lagSmoothing(0);
 }
 
-function lenisScrollTo(target, d)
+const SCROLL_SPEED = 2000.0; // Number of pixels scrolled per second
+
+function lenisScrollTo(target)
 {
-    lenis.scrollTo(target, { duration: d, easing: (x) => { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; } });
+    let y;
+
+    if (['top', 'left', 'start'].includes(target)) {
+        y = 0
+    } else if (['bottom', 'right', 'end'].includes(target)) {
+        y = lenis.limit
+    } else {
+        let el;
+
+        if (typeof target === 'string')
+            el = document.querySelector(target);
+        else
+            el = target;
+        
+        y = el.offsetTop;
+    }
+
+    const dist = Math.abs(y - window.scrollY);
+    
+    const easingFunc = (x) => {
+        return -(Math.cos(Math.PI * x) - 1) / 2;
+        // return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+    };
+
+    lenis.scrollTo(target, { duration: Math.min(dist / SCROLL_SPEED, 2.0), easing: easingFunc });
+
 }
 
 function applyStartingAnimation()
@@ -234,6 +315,27 @@ function applyScrollTriggers()
             ease: 'power4.inOut'
         }
     )
+
+    gsap.from(".cards .card", {
+        scrollTrigger: {
+            trigger: '.section.experience .section-header',
+            start: 'bottom 70%',
+        },
+        duration: 0.5,
+        stagger: { amount: 0.75 },
+        opacity: 0,
+        y: 100
+    });
+
+    gsap.from("footer", {
+        scrollTrigger: {
+            trigger: 'main',
+            start: 'bottom bottom',
+            end: 'bottom 60%',
+            scrub: true,
+        },
+        y: 100
+    });
 
     // gsap.from(
     //     '.section.about-me .container .portrait-container', 1.0,
@@ -428,13 +530,13 @@ function toggleNavbar()
     }
 }
 
-function navScroll(target, d)
+function navScroll(target)
 {
     closeNavbar();
-    lenisScrollTo(target, d);
+    lenisScrollTo(target);
 }
 
-async function setProjects()
+function setProjects()
 {
     const content = projectsList;
     const container = document.querySelector(".projects .container");
@@ -445,7 +547,7 @@ async function setProjects()
         container.innerHTML += template.render(obj);
 }
 
-async function setEducationPoints()
+function setEducationPoints()
 {
     const content = educationPoints;
     const container = document.querySelector(".education .main-container .container");
@@ -457,10 +559,10 @@ async function setEducationPoints()
         container.innerHTML += template.render(obj);
 }
 
-async function startWebsite()
+function startWebsite()
 {
-    await setProjects();
-    await setEducationPoints();
+    setProjects();
+    setEducationPoints();
 
     createTrailer();
 

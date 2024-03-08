@@ -1,6 +1,16 @@
 @import url("assets/fonts/fonts.css");
 
-*, *::before, *::after {
+@mixin on-hover {
+    @media (hover: hover) and (pointer: fine) {
+        &:hover {
+            @content;
+        }
+    }
+}
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -18,7 +28,7 @@
 html.lenis {
     height: auto;
 }
-  
+
 .lenis.lenis-smooth {
     scroll-behavior: auto !important;
 }
@@ -38,6 +48,9 @@ html.lenis {
 :root {
     --body-bg: #212224;
     --body-fg: #fff;
+
+    font-size: max(0.83svw, 10px);
+
     --side-padding: 8rem;
     --section-padding: 4rem;
 }
@@ -71,7 +84,7 @@ button {
 
     transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
 
-    &:hover {
+    @include on-hover {
         background-color: #fff;
         color: #000;
     }
@@ -83,11 +96,11 @@ button {
 
     background-color: #fff;
     border-radius: 50%;
-    
+
     position: fixed;
 
     opacity: 0;
-    transition: opacity 0.5s ease, 
+    transition: opacity 0.5s ease,
         scale 0.2s ease-out;
 
     --x: 0px;
@@ -100,9 +113,7 @@ button {
 
     pointer-events: none;
     --scale: 1.0;
-    scale: var(--scale)
-
-    // filter: drop-shadow(rgba(0, 0, 0, 0.295) 0px 0.2rem 10px);
+    scale: var(--scale) // filter: drop-shadow(rgba(0, 0, 0, 0.295) 0px 0.2rem 10px);
 }
 
 .floating-nav {
@@ -131,18 +142,21 @@ button {
 
         transition: background-color 0.25s;
 
-        // &:hover + .sidebar {
+        // @include on-hover + .sidebar {
         //     transform: translateX(0%);
         // }
 
-        &:hover {
+        @include on-hover {
             background-color: #000;
-            .xmark, .bars {
+
+            .xmark,
+            .bars {
                 filter: opacity(0.8);
             }
         }
 
-        .xmark, .bars {
+        .xmark,
+        .bars {
             display: none;
             position: absolute;
             top: 50%;
@@ -157,11 +171,11 @@ button {
             transition: filter 0.25s;
         }
 
-        &.open > .xmark {
+        &.open>.xmark {
             display: block;
         }
 
-        &:not(.open) > .bars {
+        &:not(.open)>.bars {
             display: block;
         }
     }
@@ -187,7 +201,7 @@ button {
             li {
                 list-style-type: none;
                 clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-            }    
+            }
         }
 
         .nav-link {
@@ -206,7 +220,7 @@ button {
                 transition: width 0.25s ease-out;
             }
 
-            &:hover {
+            @include on-hover {
                 &::before {
                     width: 100%;
                 }
@@ -223,10 +237,10 @@ body {
     color: var(--body-fg);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: subpixel-antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	// font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    // font-smoothing: antialiased;
 
-    &:hover {
+    @include on-hover {
         .trailer {
             opacity: 1;
         }
@@ -271,7 +285,7 @@ footer {
                     text-decoration: none;
                     font-size: 1.5rem;
 
-                    &:hover {
+                    @include on-hover {
                         color: #ffe8a9;
                         text-decoration: underline
                     }
@@ -292,7 +306,7 @@ footer {
         display: flex;
         gap: 1rem;
 
-        &:hover {
+        @include on-hover {
             .arrow {
                 rotate: -90deg;
                 filter: invert(1.0);
@@ -300,6 +314,7 @@ footer {
         }
 
         .arrow {
+            height: 2rem;
             position: relative;
             rotate: -45deg;
             transition: rotate 0.2s ease-in-out, filter 0.2s ease-in-out;
@@ -364,21 +379,23 @@ main {
 
             h1 {
                 font-family: 'against', 'serif';
-                font-size: 5rem;
+                font-size: 6rem;
                 margin: 0;
             }
-    
+
             p {
                 margin: 0;
                 color: #777;
-                font-size: 1.5rem;
+                font-size: 2rem;
                 font-family: "neuemachina-regular";
             }
         }
 
         .circles {
             position: absolute;
+            pointer-events: none;
             // margin: auto;
+            width: 50vw;
             place-self: center;
             opacity: 0.3;
         }
@@ -431,11 +448,11 @@ main {
                     transition: width 0.25s ease-in-out;
                 }
 
-                &:hover {
+                @include on-hover {
                     &::before {
                         width: 100%;
                         left: 0;
-                    } 
+                    }
                 }
             }
         }
@@ -491,7 +508,7 @@ main {
                 background-color: #fff;
                 border-radius: 50px;
             }
-    
+
             .listing {
                 margin-left: var(--left-margin);
                 position: relative;
@@ -533,7 +550,7 @@ main {
     }
 
     .about-me {
-        > .container {
+        >.container {
             display: grid;
             grid-template-columns: 1.75fr 1fr;
             gap: 4rem;
@@ -572,13 +589,13 @@ main {
 
     .experience {
         .manifesto {
-            > p {
+            >p {
                 position: relative;
                 font-family: 'neuemachina-regular';
                 font-size: 5.5rem;
                 margin: 0;
                 overflow: hidden;
-    
+
                 .overlay {
                     position: absolute;
                     pointer-events: none;
@@ -590,8 +607,8 @@ main {
                     top: 0;
                 }
             }
-    
-            > p:not(:last-child) {
+
+            >p:not(:last-child) {
                 margin-bottom: 2rem;
             }
         }
@@ -599,7 +616,7 @@ main {
         .cards {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1rem;
+            gap: 2rem;
 
             margin-bottom: 10rem;
 
@@ -609,7 +626,7 @@ main {
                 border-radius: 25px;
                 transition: color 0.25s, background-color 0.25s;
 
-                &:hover {
+                @include on-hover {
                     color: #000;
                     background-color: #fff;
 
@@ -649,8 +666,8 @@ main {
                 padding: 2rem 0;
                 position: relative;
 
-                &:hover {
-                    h2 > .word > .letter {
+                @include on-hover {
+                    h2>.word>.letter {
                         transform: translateY(-100%);
                     }
 
@@ -674,10 +691,10 @@ main {
                     background-size: cover;
 
                     opacity: 0.0;
-                    
+
                     transition: opacity 0.25s;
                 }
-                
+
 
                 h2 {
                     font-family: 'neuemachina-ultrabold';
@@ -740,17 +757,25 @@ main {
                         transition: width 0.25s ease-in-out;
                     }
 
-                    &:hover {
+                    @include on-hover {
                         &::after {
                             width: 100%;
-                        } 
+                        }
                     }
                 }
             }
 
-            .love { color: #FF4040; }
-            .gsap { color: #92FF80; }
-            .lenis { color: #FFA9A9; }
+            .love {
+                color: #FF4040;
+            }
+
+            .gsap {
+                color: #92FF80;
+            }
+
+            .lenis {
+                color: #FFA9A9;
+            }
 
             .animate {
                 display: none;
@@ -758,20 +783,20 @@ main {
                 top: 0;
                 left: 0;
             }
-    
-            .love > .animate {
+
+            .love>.animate {
                 content: url("assets/images/heart.svg");
                 left: 75%;
                 top: -10%;
             }
-    
-            .gsap > .animate {
+
+            .gsap>.animate {
                 content: url("assets/images/asterisk.svg");
                 left: -25%;
                 top: -25%;
             }
-    
-            .lenis > .animate {
+
+            .lenis>.animate {
                 content: url("assets/images/mouse.svg");
                 left: 90%;
                 top: 10%;
@@ -785,7 +810,7 @@ main {
             color: #fffb;
             text-decoration: none;
 
-            &:hover {
+            @include on-hover {
                 color: #ffe8a9;
                 text-decoration: underline;
             }
@@ -812,7 +837,7 @@ main {
             .container {
                 grid-column: span 3 / span 3;
                 grid-column-start: 9;
-                
+
                 div {
                     margin-bottom: 3rem;
                 }
@@ -848,7 +873,8 @@ main {
                 display: block;
             }
 
-            input, textarea {
+            input,
+            textarea {
                 outline: none;
                 border: none;
                 padding: 1rem;
@@ -856,7 +882,9 @@ main {
                 font-size: 1.5rem;
             }
 
-            input[type=text], input[type=email], textarea {
+            input[type=text],
+            input[type=email],
+            textarea {
                 border-radius: 10px;
                 border: 1px solid darkgray;
                 width: 100%;
@@ -864,7 +892,8 @@ main {
                 color: white;
             }
 
-            input[data-invalid=true], textarea[data-invalid=true] {
+            input[data-invalid=true],
+            textarea[data-invalid=true] {
                 border-color: #FF4040;
             }
 
@@ -889,6 +918,88 @@ main {
 
             a {
                 @extend .button;
+            }
+        }
+    }
+}
+
+@media (hover: none) {
+    .trailer {
+        display: none;
+    }
+}
+
+@media (max-width: 960px) {
+    .cards {
+        grid-template-columns: 1fr !important;
+
+        img {
+            height: 5rem !important;
+        }
+    }
+}
+
+@media (max-width: 720px) {
+    .hero {
+        .navbar .nav-link {
+            font-size: 2rem !important;
+        }
+
+        .name h1 {
+            font-size: 4rem !important;
+        }
+    }
+
+    .about-me .container {
+        display: flex !important;
+        flex-direction: column-reverse;
+        justify-content: center;
+
+        .portrait-container {
+            height: 40svh;
+            width: 100%;
+
+            img {
+                object-fit: cover;
+                height: 100%;
+                position: static;
+            }
+        }
+    }
+
+    .contacts .message {
+        display: flex !important;
+        flex-direction: column;
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+
+            div:nth-child(2) {
+                text-align: right;
+            }
+        }
+    }
+
+    footer {
+        .lists {
+            flex-wrap: wrap;
+            gap: 2rem;
+
+            .climb-up-btn {
+                margin: auto;
+            }
+        }
+    }
+
+    :root {
+        --side-padding: 4rem;
+    }
+
+    .experience {
+        .manifesto {
+            >p {
+                font-size: 4rem !important;
             }
         }
     }
