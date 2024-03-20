@@ -707,8 +707,9 @@ main {
                     font-family: 'neuemachina-ultrabold';
                     font-size: 2.5rem;
                     margin: 0;
-                    height: 3.5rem;
+                    height: 100%;
                     overflow: hidden;
+                    position: relative;
 
                     .letter {
                         transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
@@ -718,7 +719,11 @@ main {
                     }
 
                     .word:last-child {
+                        position: absolute;
                         color: #ffe8a9;
+                        top: 100%;
+                        left: 0;
+                        // transform: translateY(100%);
                     }
                 }
 
@@ -1057,12 +1062,12 @@ main {
         text-align: center;
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
         a {
-            font-size: 2rem!important;
+            font-size: 1.75rem!important;
         }
 
         .barcode {
@@ -1089,7 +1094,6 @@ main {
 
     main .projects .container .listing h2 {
         font-size: 1.75rem;
-        height: 2.25rem;
     }
 
     .contacts .message {
