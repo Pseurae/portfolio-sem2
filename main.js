@@ -327,15 +327,15 @@ function applyScrollTriggers()
         y: 100
     });
 
-    gsap.from("footer", {
-        scrollTrigger: {
-            trigger: 'main',
-            start: 'bottom bottom',
-            end: 'bottom 60%',
-            scrub: true,
-        },
-        y: 100
-    });
+    // gsap.from("footer", {
+    //     scrollTrigger: {
+    //         trigger: 'main',
+    //         start: 'bottom bottom',
+    //         end: 'bottom 60%',
+    //         scrub: true,
+    //     },
+    //     y: 100
+    // });
 
     // gsap.from(
     //     '.section.about-me .container .portrait-container', 1.0,
