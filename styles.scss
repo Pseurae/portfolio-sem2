@@ -49,7 +49,7 @@ html.lenis {
     --body-bg: #212224;
     --body-fg: #fff;
 
-    font-size: max(0.83svw, 8px);
+    font-size: max(0.83svw, 10px);
 
     --side-padding: 8rem;
     --section-padding: 4rem;
@@ -621,6 +621,11 @@ main {
             margin-bottom: 10rem;
 
             .card {
+                display: flex;
+                gap: 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+
                 padding: 4rem;
                 border: 2px solid #fff;
                 border-radius: 25px;
@@ -649,6 +654,7 @@ main {
                 }
 
                 p {
+                    margin-top: auto;
                     font-size: 1.5rem;
                     margin-bottom: 0;
                 }
@@ -932,6 +938,14 @@ main {
 @media (max-width: 960px) {
     .cards {
         grid-template-columns: 1fr !important;
+        gap: 5rem!important;
+
+        .card {
+            border: none!important;
+            padding: 0!important;
+            text-align: center;
+            align-items: center!important;
+        }
 
         img {
             height: 5rem !important;
@@ -973,10 +987,10 @@ main {
 
         .container {
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
 
             div:nth-child(2) {
-                text-align: right;
             }
         }
     }
@@ -1002,5 +1016,66 @@ main {
                 font-size: 4rem !important;
             }
         }
+    }
+}
+
+@media (max-width: 540px) {
+    :root {
+        --section-padding: 3rem!important;
+    }
+
+    .hero .name h1 {
+        font-size: 3rem !important;
+    }
+
+    .section-header {
+        font-size: 3rem!important;
+    }
+
+    main .education .container .listing { 
+        .qualification {
+            font-size: 2rem!important;
+        }
+
+        p {
+            font-size: 1.75rem!important;
+        }
+    }
+
+    footer {
+        .content {
+            p {
+                margin: auto;
+            }
+        }
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        a {
+            font-size: 1.2rem!important;
+        }
+
+        .barcode {
+            display: none;
+        }
+
+        .lists {
+            justify-content: center;
+        }
+    }
+
+    .experience {
+        .cards .card {
+            h1 {
+                font-size: 2rem!important;
+            }
+        }
+    }
+
+    main .projects .container .listing h2 {
+        font-size: 1.75rem;
+        height: 2.25rem;
     }
 }
