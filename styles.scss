@@ -305,6 +305,7 @@ footer {
 
         display: flex;
         gap: 1rem;
+        align-items: center;
 
         @include on-hover {
             .arrow {
@@ -1043,33 +1044,45 @@ main {
     }
 
     footer {
+        .lists {
+            flex-direction: column;
+        }
+
         .content {
             p {
                 margin: auto;
             }
         }
 
+        text-align: center;
+
         h1 {
-            font-size: 1.5rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
 
         a {
-            font-size: 1.2rem!important;
+            font-size: 2rem!important;
         }
 
         .barcode {
             display: none;
         }
-
-        .lists {
-            justify-content: center;
-        }
     }
 
     .experience {
         .cards .card {
+
             h1 {
+                font-size: 3rem!important;
+            }
+
+            p {
                 font-size: 2rem!important;
+            }
+
+            img {
+                height: 7rem!important;
             }
         }
     }
@@ -1077,5 +1090,22 @@ main {
     main .projects .container .listing h2 {
         font-size: 1.75rem;
         height: 2.25rem;
+    }
+
+    .contacts .message {
+        display: flex !important;
+        flex-direction: column;
+
+        .container {
+            div {
+                h2 {
+                    font-size: 2.5rem;
+                }
+
+                a {
+                    font-size: 2rem;
+                }
+            }
+        }
     }
 }
