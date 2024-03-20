@@ -499,9 +499,9 @@ main {
             .line {
                 position: absolute;
                 --height: 100%;
-                height: calc(var(--height) - var(--line-offset));
+                height: calc(var(--height));
                 width: 4px;
-                top: var(--line-offset);
+                top: 0;
                 left: -2px; // Half of width
                 background-color: #fff;
                 border-radius: 50px;
@@ -520,7 +520,7 @@ main {
                     background-color: #fff;
                     border-radius: 50%;
 
-                    top: var(--line-offset);
+                    top: 0;
                     left: calc(-1 * var(--left-margin));
 
                     transform: translateX(-50%);
@@ -941,7 +941,8 @@ main {
 @media (max-width: 960px) {
     .cards {
         grid-template-columns: 1fr !important;
-        gap: 5rem!important;
+        gap: 6rem!important;
+        padding-top: 4rem;
 
         .card {
             border: none!important;
@@ -1115,6 +1116,12 @@ main {
     }
 
     
-    footer .link-list ul {
+    .floating-nav .trigger {
+        width: 5rem;
+        height: 5rem;
+
+        .bars, .xmark {
+            height: 2.5rem!important;
+        }
     }
 }
