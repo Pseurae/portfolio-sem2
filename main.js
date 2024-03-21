@@ -316,15 +316,43 @@ function applyScrollTriggers()
         }
     )
 
-    gsap.from(".cards .card", {
-        scrollTrigger: {
-            trigger: '.section.experience .section-header',
-            start: 'bottom 70%',
-        },
-        duration: 0.5,
-        stagger: { amount: 0.75 },
-        opacity: 0,
-        y: 100
+    let mm = gsap.matchMedia();
+    mm.add("(max-width: 960px)", () => {
+        document.querySelectorAll('.cards .card').forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 90%',
+                },
+                duration: 0.75,
+                opacity: 0,
+                y: 100
+            });
+        });
+        // gsap.from(".cards .card", {
+        //     scrollTrigger: {
+        //         trigger: '.section.experience .section-header',
+        //         start: 'bottom 70%',
+        //         markers: true
+        //     },
+        //     duration: 0.5,
+        //     stagger: { amount: 0.75 },
+        //     opacity: 0,
+        //     y: 100
+        // });
+    });
+
+    mm.add('(min-width: 961px', () => {
+        gsap.from(".cards .card", {
+            scrollTrigger: {
+                trigger: '.section.experience .section-header',
+                start: 'bottom 70%',
+            },
+            duration: 0.5,
+            stagger: { amount: 0.75 },
+            opacity: 0,
+            y: 100
+        });
     });
 
     // gsap.from("footer", {
