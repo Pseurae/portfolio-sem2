@@ -200,26 +200,26 @@ function applyStartingAnimation()
         },
     );
 
-    const splitText = new SplitType(".hero .name h1");
-    gsap.from(
-        splitText.chars, 1.5,
-        {
-            y: 300,
-            opacity: 0,
-            delay: 1.5,
-            stagger: { amount: 0.2 },
-            ease: 'power4.inOut'
-        }
-    );
+    // const splitText = new SplitType(".hero .name h1");
+    // gsap.from(
+    //     splitText.chars, 1.5,
+    //     {
+    //         y: 300,
+    //         opacity: 0,
+    //         delay: 1.5,
+    //         stagger: { amount: 0.2 },
+    //         ease: 'power4.inOut'
+    //     }
+    // );
 
-    gsap.from(
-        '.hero .name p', 1.5,
-        {
-            opacity: 0,
-            delay: 2.15,
-            ease: 'power4.inOut'
-        }
-    );
+    // gsap.from(
+    //     '.hero .name p', 1.5,
+    //     {
+    //         opacity: 0,
+    //         delay: 2.15,
+    //         ease: 'power4.inOut'
+    //     }
+    // );
 
     // gsap.from(
     //     '.hero .circles', 1.5,
@@ -587,17 +587,71 @@ function setEducationPoints()
         container.innerHTML += template.render(obj);
 }
 
+function buildHeroGrid()
+{
+    const heroSection = document.querySelector('main .hero');
+    
+    var { width, height, _, _ } = heroSection.getBoundingClientRect();
+
+    const columns = Math.ceil(width / 80);
+    const rows = Math.ceil(height / 80);
+
+    const container = document.querySelector('main .hero .bg-grid');
+    container.innerHTML = '';
+
+    container.style.setProperty('--columns', columns);
+    container.style.setProperty('--rows', rows);
+
+    let canClick = true;
+
+    for (var i = 0; i < columns * rows; ++i)
+    {
+        const gridItem = document.createElement('div');
+        gridItem.classList.add('item');
+        gridItem.dataset.index = i;
+
+        gridItem.addEventListener('click', (e) => {
+            console.log('Clicked');
+            if (canClick) {
+                gsap.to('.hero .bg-grid .item', 0.2, {
+                    '--opacity': 1.0,
+                    stagger: {
+                        amount: 0.7,
+                        yoyo: true,
+                        repeat: 1,
+                        repeatDelay: 0.05,
+                        grid: [rows, columns],
+                        from: e.target.dataset.index
+                    },
+                    onStart: () => { canClick = false; },
+                    onComplete : () => { canClick = true; }
+                });
+            }
+        });
+
+        container.appendChild(gridItem);
+    }
+}
+
+window.onresize = () => {
+    if (document.body.clientWidth > 768)
+        buildHeroGrid();
+};
+
 function startWebsite()
 {
     setProjects();
     setEducationPoints();
 
-    createTrailer();
+    // createTrailer();
 
     // createHoverImg();
     applyLenisScroll();
     applyPortraitEffects();
     createLoadingBars(10);
+
+    if (document.body.clientWidth > 768)
+        buildHeroGrid();
 
     applyStartingAnimation();
     applyScrollTriggers();
