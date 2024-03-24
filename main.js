@@ -626,10 +626,10 @@ function buildHeroGrid()
                 //     onStart: () => { canClick = false; },
                 //     onComplete : () => { canClick = true; }
                 // });
-                const tw = gsap.to('.hero .bg-grid .item', 0.2, {
+                const tw = gsap.to('.hero .bg-grid .item', 0.1, {
                     '--opacity': toggled ? 1.0: 0.0,
                     stagger: {
-                        amount: 1.0,
+                        amount: 0.8,
                         grid: [rows, columns],
                         from: e.target.dataset.index,
                     },
