@@ -1024,6 +1024,10 @@ main {
         display: none;
     }
 
+    .hero .video-container {
+        display: none;
+    }
+
     .cards {
         grid-template-columns: 1fr !important;
         gap: 6rem!important;
