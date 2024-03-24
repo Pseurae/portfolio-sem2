@@ -603,6 +603,7 @@ function buildHeroGrid()
     container.style.setProperty('--rows', rows);
 
     let canClick = true;
+    let toggled = false;
 
     for (var i = 0; i < columns * rows; ++i)
     {
@@ -611,20 +612,35 @@ function buildHeroGrid()
         gridItem.dataset.index = i;
 
         gridItem.addEventListener('click', (e) => {
-            console.log('Clicked');
             if (canClick) {
-                gsap.to('.hero .bg-grid .item', 0.2, {
-                    '--opacity': 1.0,
+                // gsap.to('.hero .bg-grid .item', 0.2, {
+                //     '--opacity': 1.0,
+                //     stagger: {
+                //         amount: 0.7,
+                //         yoyo: true,
+                //         repeat: 1,
+                //         repeatDelay: 0.05,
+                //         grid: [rows, columns],
+                //         from: e.target.dataset.index
+                //     },
+                //     onStart: () => { canClick = false; },
+                //     onComplete : () => { canClick = true; }
+                // });
+                const tw = gsap.to('.hero .bg-grid .item', 0.2, {
+                    '--opacity': toggled ? 1.0: 0.0,
                     stagger: {
-                        amount: 0.7,
-                        yoyo: true,
-                        repeat: 1,
-                        repeatDelay: 0.05,
+                        amount: 1.0,
                         grid: [rows, columns],
-                        from: e.target.dataset.index
+                        from: e.target.dataset.index,
                     },
                     onStart: () => { canClick = false; },
-                    onComplete : () => { canClick = true; }
+                    onComplete : () => { canClick = true; toggled = !toggled; },
+                    // onUpdate: () => {
+                    //     if (tw.progress() > 0.4 && canClick === false)
+                    //     {
+                    //         canClick = true; toggled = !toggled;
+                    //     }
+                    // }
                 });
             }
         });
