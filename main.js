@@ -54,15 +54,13 @@ const projectsList = [
 
 const lenis = new Lenis();
 
-function createLoadingBars(num)
-{
+function createLoadingBars(num) {
     var container = document.createElement('div');
     container.classList.add('bars');
 
     var widthPercent = (100 / num);
 
-    for (let i = 0; i < num; ++i)
-    {
+    for (let i = 0; i < num; ++i) {
         var bar = document.createElement('div');
         bar.classList.add('bar');
         bar.style.width = widthPercent + '%';
@@ -73,8 +71,7 @@ function createLoadingBars(num)
     document.body.appendChild(container);
 }
 
-function createHoverImg()
-{
+function createHoverImg() {
     var hoverImg = document.querySelector('.hover-img');
     const animateHoverImage = (e, interacting) => {
         const keyframes = {
@@ -86,7 +83,7 @@ function createHoverImg()
     };
 
     window.addEventListener('mousemove', (e) => {
-        const interactable = e.target.closest('*[data-hover-image]'), 
+        const interactable = e.target.closest('*[data-hover-image]'),
             interacting = interactable !== null;
 
         animateHoverImage(e, interacting);
@@ -95,8 +92,7 @@ function createHoverImg()
     });
 }
 
-function createTrailer()
-{
+function createTrailer() {
     let interacting = false;
 
     const trailer = document.createElement('div');
@@ -105,8 +101,8 @@ function createTrailer()
     document.body.appendChild(trailer);
 
     const moveTrailer = (ex, ey) => {
-        const x = ex - trailer.offsetWidth / 2, 
-              y = ey - trailer.offsetHeight / 2;
+        const x = ex - trailer.offsetWidth / 2,
+            y = ey - trailer.offsetHeight / 2;
 
         trailer.style.setProperty('--x', x + "px");
         trailer.style.setProperty('--y', y + "px");
@@ -131,11 +127,10 @@ function createTrailer()
     });
 }
 
-function applyPortraitEffects()
-{
+function applyPortraitEffects() {
     var img = document.querySelector(".portrait");
     img.addEventListener('mousemove', (e) => {
-        var x = (e.offsetX / e.target.offsetWidth) * 2.0 - 1.0, 
+        var x = (e.offsetX / e.target.offsetWidth) * 2.0 - 1.0,
             y = (e.offsetY / e.target.offsetHeight) * 2.0 - 1.0;
 
         e.target.style.setProperty("--rotate-x", (-2 * y) + "deg");
@@ -147,19 +142,17 @@ function applyPortraitEffects()
     })
 }
 
-function applyLenisScroll()
-{
+function applyLenisScroll() {
     lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time)=>{
-      lenis.raf(time * 1000)
+    gsap.ticker.add((time) => {
+        lenis.raf(time * 1000)
     });
     gsap.ticker.lagSmoothing(0);
 }
 
 const SCROLL_SPEED = 2000.0; // Number of pixels scrolled per second
 
-function lenisScrollTo(target)
-{
+function lenisScrollTo(target) {
     let y;
 
     if (['top', 'left', 'start'].includes(target)) {
@@ -173,12 +166,12 @@ function lenisScrollTo(target)
             el = document.querySelector(target);
         else
             el = target;
-        
+
         y = el.offsetTop;
     }
 
     const dist = Math.abs(y - window.scrollY);
-    
+
     const easingFunc = (x) => {
         return -(Math.cos(Math.PI * x) - 1) / 2;
         // return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
@@ -188,8 +181,7 @@ function lenisScrollTo(target)
 
 }
 
-function applyStartingAnimation()
-{
+function applyStartingAnimation() {
     gsap.to(
         ".bars .bar", 1.5,
         {
@@ -231,8 +223,7 @@ function applyStartingAnimation()
     // );
 }
 
-function applyScrollTriggers()
-{
+function applyScrollTriggers() {
     // Navigation
     gsap.set('.floating-nav .trigger', { opacity: 0.0, rotate: '-45deg', x: "-200%" });
 
@@ -256,11 +247,11 @@ function applyScrollTriggers()
             scrollTrigger: {
                 trigger: '.hero',
                 start: 'bottom 100%',
-                end: 'bottom 50%',
+                end: 'bottom 15%',
                 scrub: 1,
             },
             opacity: 0,
-            ease: "power2.inOut",
+            // ease: "power2.inOut",
         },
     );
 
@@ -270,8 +261,9 @@ function applyScrollTriggers()
         {
             scrollTrigger: {
                 trigger: '.education h1',
-                start: 'bottom 80%',
+                start: 'bottom 70%',
             },
+            delay: { amount: 1.0 },
             x: 100,
             opacity: 0,
             stagger: { amount: 0.5 },
@@ -284,37 +276,37 @@ function applyScrollTriggers()
         {
             scrollTrigger: {
                 trigger: '.education h1',
-                start: 'bottom 85%',
+                start: 'bottom 70%',
             },
             '--height': '0%',
-            ease: 'power3.inOut'
+            ease: 'power3.out'
         },
     );
 
     // About Me
-    gsap.from(
-        '.section.about-me .section-header', 1.0,
-        {
-            scrollTrigger: {
-                trigger: '.section.about-me .section-header',
-                start: 'top 70%',
-            },
-            opacity: 0
-        }
-    );
+    // gsap.from(
+    //     '.section.about-me .section-header', 1.0,
+    //     {
+    //         scrollTrigger: {
+    //             trigger: '.section.about-me .section-header',
+    //             start: 'top 70%',
+    //         },
+    //         opacity: 0
+    //     }
+    // );
 
-    gsap.from(
-        '.section.about-me .container', 1.5,
-        {
-            scrollTrigger: {
-                trigger: '.section.about-me .section-header',
-                start: 'top 60%',
-            },
-            opacity: 0,
-            y: 100,
-            ease: 'power4.inOut'
-        }
-    )
+    // gsap.from(
+    //     '.section.about-me .container', 1.5,
+    //     {
+    //         scrollTrigger: {
+    //             trigger: '.section.about-me .section-header',
+    //             start: 'top 60%',
+    //         },
+    //         opacity: 0,
+    //         y: 100,
+    //         ease: 'power4.inOut'
+    //     }
+    // )
 
     let mm = gsap.matchMedia();
     mm.add("(max-width: 960px)", () => {
@@ -322,7 +314,8 @@ function applyScrollTriggers()
             gsap.from(el, {
                 scrollTrigger: {
                     trigger: el,
-                    start: 'top 90%',
+                    start: 'top 75%',
+                    markers: true
                 },
                 duration: 0.75,
                 opacity: 0,
@@ -408,8 +401,7 @@ function applyScrollTriggers()
     // )
 }
 
-function applyExperienceAnimation()
-{
+function applyExperienceAnimation() {
     for (const p of document.querySelectorAll(".section.experience p")) {
         var span = document.createElement('span');
         span.classList.add('overlay');
@@ -417,34 +409,31 @@ function applyExperienceAnimation()
 
         gsap.to(
             span, {
-                scrollTrigger: {
-                    trigger: p,
-                    start: 'top 70%',
-                    end: 'top 10%',
-                    scrub: true
-                },
-                x: "100%"
-            }
+            scrollTrigger: {
+                trigger: p,
+                start: 'top 70%',
+                end: 'top 10%',
+                scrub: true
+            },
+            x: "100%"
+        }
         );
     }
 }
 
-function applyProjectHoverEffect()
-{
+function applyProjectHoverEffect() {
     const projectHeaders = document.querySelectorAll('.projects .container h2');
 
-    for (const header of projectHeaders)
-    {
+    for (const header of projectHeaders) {
         var text = header.innerHTML;
         header.innerHTML = "";
 
         var container = document.createElement("div");
         container.classList.add('word');
 
-        var delay  = 0.15 / text.length;
+        var delay = 0.15 / text.length;
 
-        for (let i = 0; i < text.length; ++i)
-        {
+        for (let i = 0; i < text.length; ++i) {
             var letter = text.charAt(i);
             var s = document.createElement('span');
             s.classList.add("letter");
@@ -464,8 +453,7 @@ function validateEmail(email) {
     return re.test(email);
 }
 
-function checkFormValidity()
-{
+function checkFormValidity() {
     var formElements = [
         { id: "#name", f: (s) => { return Boolean(s); } },
         { id: "#email", f: validateEmail },
@@ -484,8 +472,7 @@ function checkFormValidity()
     });
 }
 
-function setFormListeners()
-{
+function setFormListeners() {
     var formElements = [
         "#name",
         "#email",
@@ -503,41 +490,39 @@ function setFormListeners()
     });
 }
 
-function closeNavbar()
-{
+function closeNavbar() {
     const sidebar = document.querySelector('.floating-nav .sidebar');
     const btn = document.querySelector('.floating-nav .trigger');
 
     gsap.to(
         sidebar, 1.0, {
-            x: "-100%",
-            ease: 'power4.inOut'
-        }
+        x: "-100%",
+        ease: 'power4.inOut'
+    }
     );
     sidebar.classList.remove('open');
     btn.classList.remove('open');
 }
 
-function toggleNavbar()
-{
+function toggleNavbar() {
     const sidebar = document.querySelector('.floating-nav .sidebar');
     const btn = document.querySelector('.floating-nav .trigger');
 
     if (sidebar.classList.contains('open')) {
         gsap.to(
             sidebar, 0.75, {
-                x: "-100%",
-                ease: 'power4.out'
-            }
+            x: "-100%",
+            ease: 'power4.out'
+        }
         );
         sidebar.classList.remove('open');
         btn.classList.remove('open');
     } else {
         gsap.to(
             sidebar, 0.75, {
-                x: "0%",
-                ease: 'power4.out',
-            },
+            x: "0%",
+            ease: 'power4.out',
+        },
         );
 
         // gsap.from(
@@ -558,14 +543,12 @@ function toggleNavbar()
     }
 }
 
-function navScroll(target)
-{
+function navScroll(target) {
     closeNavbar();
     lenisScrollTo(target);
 }
 
-function setProjects()
-{
+function setProjects() {
     const content = projectsList;
     const container = document.querySelector(".projects .container");
     const templateCode = document.getElementById("project-listing-template").innerHTML;
@@ -575,8 +558,7 @@ function setProjects()
         container.innerHTML += template.render(obj);
 }
 
-function setEducationPoints()
-{
+function setEducationPoints() {
     const content = educationPoints;
     const container = document.querySelector(".education .main-container .container");
 
@@ -587,10 +569,9 @@ function setEducationPoints()
         container.innerHTML += template.render(obj);
 }
 
-function buildHeroGrid()
-{
+function buildHeroGrid() {
     const heroSection = document.querySelector('main .hero');
-    
+
     var { width, height, _, _ } = heroSection.getBoundingClientRect();
 
     const columns = Math.ceil(width / 80);
@@ -605,8 +586,7 @@ function buildHeroGrid()
     let canClick = true;
     let toggled = false;
 
-    for (var i = 0; i < columns * rows; ++i)
-    {
+    for (var i = 0; i < columns * rows; ++i) {
         const gridItem = document.createElement('div');
         gridItem.classList.add('item');
         gridItem.dataset.index = i;
@@ -627,14 +607,14 @@ function buildHeroGrid()
                 //     onComplete : () => { canClick = true; }
                 // });
                 const tw = gsap.to('.hero .bg-grid .item', 0.2, {
-                    '--opacity': toggled ? 1.0: 0.0,
+                    '--opacity': toggled ? 1.0 : 0.0,
                     stagger: {
                         amount: 1.0,
                         grid: [rows, columns],
                         from: e.target.dataset.index,
                     },
                     onStart: () => { canClick = false; },
-                    onComplete : () => { canClick = true; toggled = !toggled; },
+                    onComplete: () => { canClick = true; toggled = !toggled; },
                     // onUpdate: () => {
                     //     if (tw.progress() > 0.4 && canClick === false)
                     //     {
@@ -654,8 +634,7 @@ window.onresize = () => {
         buildHeroGrid();
 };
 
-function startWebsite()
-{
+function startWebsite() {
     setProjects();
     setEducationPoints();
 
