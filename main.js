@@ -315,7 +315,6 @@ function applyScrollTriggers() {
                 scrollTrigger: {
                     trigger: el,
                     start: 'top 75%',
-                    markers: true
                 },
                 duration: 0.75,
                 opacity: 0,
