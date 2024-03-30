@@ -38,7 +38,8 @@ jobs:
         with:
           source: styles.scss
           destination: styles.css
-      
+      - name: auto minify the files
+        uses: nizarmah/auto-minify@v3
       - name: Create build directory
         run: |
           mkdir build

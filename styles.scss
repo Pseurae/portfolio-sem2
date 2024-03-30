@@ -87,32 +87,6 @@ button {
     }
 }
 
-.trailer {
-    height: 1rem;
-    width: 1rem;
-
-    background-color: #fff;
-    border-radius: 50%;
-
-    position: fixed;
-
-    opacity: 0;
-    transition: opacity 0.5s ease,
-        scale 0.2s ease-out;
-
-    --x: 0px;
-    --y: 0px;
-
-    left: var(--x);
-    top: var(--y);
-
-    z-index: 99999;
-
-    pointer-events: none;
-    --scale: 1.0;
-    scale: var(--scale) // filter: drop-shadow(rgba(0, 0, 0, 0.295) 0px 0.2rem 10px);
-}
-
 .floating-nav {
     position: fixed;
     z-index: 2;
@@ -153,10 +127,6 @@ button {
         transition: background-color 0.25s;
 
         filter: drop-shadow(#19181836 0 1rem 1rem);
-
-        // @include on-hover + .sidebar {
-        //     transform: translateX(0%);
-        // }
 
         @include on-hover {
             background-color: var(--text-secondary);
@@ -296,7 +266,6 @@ body {
     -webkit-font-smoothing: subpixel-antialiased;
     line-height: normal;
     -moz-osx-font-smoothing: grayscale;
-    // font-smoothing: antialiased;
 
     background-color: var(--body-bg);
     color: var(--text-primary);
@@ -569,7 +538,6 @@ main {
             z-index: 1;
             position: absolute;
             pointer-events: none;
-            // margin: auto;
             width: 50vw;
             place-self: center;
             opacity: 0.3;
@@ -587,52 +555,6 @@ main {
         .scroll-indicator.right {
             right: calc(var(--side-padding) / 2);
         }
-
-        .navbar {
-            display: none;
-            z-index: 1;
-            position: absolute;
-            text-align: right;
-
-            right: var(--side-padding);
-            top: var(--section-padding);
-
-            ul {
-                margin: 0;
-
-                li {
-                    margin: 0;
-                    list-style: none;
-                }
-            }
-
-            .nav-link {
-                color: #fff6;
-                text-decoration: none;
-                font-size: 1.5rem;
-                position: relative;
-                padding: 0 0.25rem;
-
-                &::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    width: 0%;
-                    height: 100%;
-                    background-color: #3d3c3b;
-                    z-index: -1;
-                    transition: width 0.25s ease-in-out;
-                }
-
-                @include on-hover {
-                    &::before {
-                        width: 100%;
-                        left: 0;
-                    }
-                }
-            }
-        }
     }
 
     .education {
@@ -647,21 +569,6 @@ main {
             align-items: stretch;
             gap: 5rem;
         }
-
-        // .img-container {
-        //     flex: 1;
-
-        //     .hover-img {
-        //         --image: none;
-
-        //         width: 100%;
-        //         height: 100%;
-        //         background-repeat: no-repeat;
-        //         background-position: 0%;
-        //         background-size: cover;
-        //         background-image: var(--image);
-        //     }
-        // }
 
         .container {
             --line-offset: calc(1rem * 0.75);
@@ -831,10 +738,6 @@ main {
                 h1 {
                     margin: 0;
                     font-size: clamp(2.5vw, 2.5rem, 3rem);
-
-                    // @media (max-width: 1100px) {
-                    //     font-size: 2.5rem;
-                    // }
                 }
 
                 p {
@@ -857,17 +760,13 @@ main {
                 position: relative;
 
                 @include on-hover {
-                    h2>.word>.letter {
+                    h2 > .word > .letter {
                         transform: translateY(-100%);
                     }
 
                     .bg-img {
                         opacity: 0.25;
                     }
-
-                    // h2 > .word:first-child > .letter {
-                    //     opacity: 0;
-                    // }
                 }
 
                 .bg-img {
@@ -906,7 +805,6 @@ main {
                         color: var(--text-hover);
                         top: 100%;
                         left: 0;
-                        // transform: translateY(100%);
                     }
                 }
 

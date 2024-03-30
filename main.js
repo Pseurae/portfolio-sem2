@@ -71,62 +71,6 @@ function createLoadingBars(num) {
     document.body.appendChild(container);
 }
 
-function createHoverImg() {
-    var hoverImg = document.querySelector('.hover-img');
-    const animateHoverImage = (e, interacting) => {
-        const keyframes = {
-            opacity: (interacting ? 1.0 : 0.0),
-            easing: "ease-out"
-        };
-
-        hoverImg.animate(keyframes, { duration: 500, fill: "forwards" });
-    };
-
-    window.addEventListener('mousemove', (e) => {
-        const interactable = e.target.closest('*[data-hover-image]'),
-            interacting = interactable !== null;
-
-        animateHoverImage(e, interacting);
-        if (interacting && interactable.dataset.hoverImage !== null)
-            hoverImg.style.setProperty("--image", "url(" + interactable.dataset.hoverImage + ")");
-    });
-}
-
-function createTrailer() {
-    let interacting = false;
-
-    const trailer = document.createElement('div');
-    trailer.classList.add('trailer');
-
-    document.body.appendChild(trailer);
-
-    const moveTrailer = (ex, ey) => {
-        const x = ex - trailer.offsetWidth / 2,
-            y = ey - trailer.offsetHeight / 2;
-
-        trailer.style.setProperty('--x', x + "px");
-        trailer.style.setProperty('--y', y + "px");
-    };
-
-    const animateTrailer = (interacting) => {
-        trailer.style.setProperty('--scale', (interacting ? 3.0 : 1.0));
-    };
-
-    document.querySelectorAll('a:not(.nav-link), input, textarea, .cards > .card').forEach((el) => {
-        el.addEventListener("mouseenter", (e) => {
-            animateTrailer(true);
-        })
-
-        el.addEventListener("mouseleave", (e) => {
-            animateTrailer(false);
-        })
-    });
-
-    window.addEventListener('mousemove', (e) => {
-        moveTrailer(e.clientX, e.clientY);
-    });
-}
-
 function applyPortraitEffects() {
     var img = document.querySelector(".portrait");
     img.addEventListener('mousemove', (e) => {
@@ -191,55 +135,9 @@ function applyStartingAnimation() {
             ease: 'power4.inOut'
         },
     );
-
-    // const splitText = new SplitType(".hero .name h1");
-    // gsap.from(
-    //     splitText.chars, 1.5,
-    //     {
-    //         y: 300,
-    //         opacity: 0,
-    //         delay: 1.5,
-    //         stagger: { amount: 0.2 },
-    //         ease: 'power4.inOut'
-    //     }
-    // );
-
-    // gsap.from(
-    //     '.hero .name p', 1.5,
-    //     {
-    //         opacity: 0,
-    //         delay: 2.15,
-    //         ease: 'power4.inOut'
-    //     }
-    // );
-
-    // gsap.from(
-    //     '.hero .circles', 1.5,
-    //     {
-    //         scale: 0,
-    //         delay: 1.5,
-    //         ease: 'power4.out'
-    //     }
-    // );
 }
 
 function applyScrollTriggers() {
-    // Navigation
-    // gsap.set('.floating-nav .trigger', { opacity: 0.0, rotate: '-45deg', x: "-200%" });
-
-    // ScrollTrigger.create({
-    //     trigger: '.hero',
-    //     start: 'bottom 90%',
-    //     end: 'bottom 60%',
-    //     onLeave: () => {
-    //         gsap.to('.floating-nav .trigger', { opacity: 1.0, duration: 0.75, x: '0%', rotate: '0deg', ease: 'back.inOut' });
-    //     },
-    //     onEnterBack: () => {
-    //         gsap.to('.floating-nav .trigger', { opacity: 0.0, duration: 0.75, x: '-100%', rotate: '-45deg', ease: 'back.inOut' });
-    //         closeNavbar();
-    //     },
-    // })
-
     // Hero Section
     gsap.to(
         '.hero',
@@ -283,31 +181,6 @@ function applyScrollTriggers() {
         },
     );
 
-    // About Me
-    // gsap.from(
-    //     '.section.about-me .section-header', 1.0,
-    //     {
-    //         scrollTrigger: {
-    //             trigger: '.section.about-me .section-header',
-    //             start: 'top 70%',
-    //         },
-    //         opacity: 0
-    //     }
-    // );
-
-    // gsap.from(
-    //     '.section.about-me .container', 1.5,
-    //     {
-    //         scrollTrigger: {
-    //             trigger: '.section.about-me .section-header',
-    //             start: 'top 60%',
-    //         },
-    //         opacity: 0,
-    //         y: 100,
-    //         ease: 'power4.inOut'
-    //     }
-    // )
-
     let mm = gsap.matchMedia();
     mm.add("(max-width: 960px)", () => {
         document.querySelectorAll('.cards .card').forEach(el => {
@@ -321,17 +194,6 @@ function applyScrollTriggers() {
                 y: 100
             });
         });
-        // gsap.from(".cards .card", {
-        //     scrollTrigger: {
-        //         trigger: '.section.experience .section-header',
-        //         start: 'bottom 70%',
-        //         markers: true
-        //     },
-        //     duration: 0.5,
-        //     stagger: { amount: 0.75 },
-        //     opacity: 0,
-        //     y: 100
-        // });
     });
 
     mm.add('(min-width: 961px', () => {
@@ -346,58 +208,6 @@ function applyScrollTriggers() {
             y: 100
         });
     });
-
-    // gsap.from("footer", {
-    //     scrollTrigger: {
-    //         trigger: 'main',
-    //         start: 'bottom bottom',
-    //         end: 'bottom 60%',
-    //         scrub: true,
-    //     },
-    //     y: 100
-    // });
-
-    // gsap.from(
-    //     '.section.about-me .container .portrait-container', 1.0,
-    //     {
-    //         scrollTrigger: {
-    //             trigger: '.section.about-me .section-header',
-    //             start: 'top 60%',
-    //         },
-    //         opacity: 0,
-    //         x: 100
-    //     }
-    // )
-
-    // Made with
-    // var madeWithTimeline = gsap.timeline({ scrollTrigger: {
-    //     trigger: '.section.made-with',
-    //     start: 'top 60%',
-    // }});
-
-    // madeWithTimeline.from(
-    //     '.section.made-with .love .animate', 0.5,
-    //     {
-    //         opacity: 0,
-    //         x: 50
-    //     }
-    // )
-
-    // madeWithTimeline.from(
-    //     '.section.made-with .gsap .animate', 0.5,
-    //     {
-    //         opacity: 0,
-    //         x: -50
-    //     }
-    // )
-
-    // madeWithTimeline.from(
-    //     '.section.made-with .lenis .animate', 0.5,
-    //     {
-    //         opacity: 0,
-    //         y: 50
-    //     }
-    // )
 }
 
 function applyExperienceAnimation() {
@@ -600,19 +410,6 @@ function buildHeroGrid() {
 
         gridItem.addEventListener('click', (e) => {
             if (canClick) {
-                // gsap.to('.hero .bg-grid .item', 0.2, {
-                //     '--opacity': 1.0,
-                //     stagger: {
-                //         amount: 0.7,
-                //         yoyo: true,
-                //         repeat: 1,
-                //         repeatDelay: 0.05,
-                //         grid: [rows, columns],
-                //         from: e.target.dataset.index
-                //     },
-                //     onStart: () => { canClick = false; },
-                //     onComplete : () => { canClick = true; }
-                // });
                 const tw = gsap.to('.hero .bg-grid .item', 0.2, {
                     '--opacity': toggled ? 1.0 : 0.0,
                     stagger: {
@@ -622,12 +419,6 @@ function buildHeroGrid() {
                     },
                     onStart: () => { canClick = false; },
                     onComplete: () => { canClick = true; toggled = !toggled; },
-                    // onUpdate: () => {
-                    //     if (tw.progress() > 0.4 && canClick === false)
-                    //     {
-                    //         canClick = true; toggled = !toggled;
-                    //     }
-                    // }
                 });
             }
         });
@@ -647,9 +438,6 @@ function startWebsite() {
     setEducationPoints();
     changeTheme('dark', true);
 
-    // createTrailer();
-
-    // createHoverImg();
     applyLenisScroll();
     applyPortraitEffects();
     createLoadingBars(10);
