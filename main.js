@@ -495,6 +495,7 @@ function setFormListeners() {
 function closeNavbar() {
     const sidebar = document.querySelector('.floating-nav .sidebar');
     const btn = document.querySelector('.floating-nav .trigger');
+    const close = document.querySelector('.floating-nav #close');
 
     gsap.to(
         sidebar, 1.0, {
@@ -504,11 +505,13 @@ function closeNavbar() {
     );
     sidebar.classList.remove('open');
     btn.classList.remove('open');
+    close.classList.remove('open');
 }
 
 function toggleNavbar() {
     const sidebar = document.querySelector('.floating-nav .sidebar');
     const btn = document.querySelector('.floating-nav .trigger');
+    const close = document.querySelector('.floating-nav #close');
 
     if (sidebar.classList.contains('open')) {
         gsap.to(
@@ -519,6 +522,7 @@ function toggleNavbar() {
         );
         sidebar.classList.remove('open');
         btn.classList.remove('open');
+        close.classList.remove('open');
     } else {
         gsap.to(
             sidebar, 0.75, {
@@ -542,6 +546,7 @@ function toggleNavbar() {
 
         sidebar.classList.add('open');
         btn.classList.add('open');
+        close.classList.add('open');
     }
 }
 
@@ -637,8 +642,10 @@ window.onresize = () => {
 };
 
 function startWebsite() {
+    
     setProjects();
     setEducationPoints();
+    changeTheme('dark', true);
 
     // createTrailer();
 
@@ -657,6 +664,24 @@ function startWebsite() {
     setFormListeners();
 }
 
-function toggleTheme() {
-    document.body.classList.toggle('light-mode');
+function changeTheme(theme, first) {
+    const style = document.createElement("style");
+    const css = document.createTextNode(`main *, footer *, .floating-nav * {
+        -webkit-transition: none !important;
+        -moz-transition: none !important;
+        -o-transition: none !important;
+        -ms-transition: none !important;
+        transition: none !important;
+    };`);
+    style.appendChild(css);
+    
+    const disable = () => document.head.appendChild(style);
+    const enable = () => document.head.removeChild(style);
+
+    if (!first) disable();
+
+    document.querySelector('#theme').value = theme;
+    document.body.dataset.theme = theme;
+
+    if (!first) document.body.addEventListener('transitionend', () => { enable(); }, { once: true });
 }

@@ -39,9 +39,11 @@
             <img class="xmark" src="assets/images/xmark-solid.svg" alt="xmark">
         </button>
 
+        <div id="close" onclick="closeNavbar()"></div>
+
         <div class="sidebar">
             <ul>
-                <li><a class="nav-link" onclick="navScroll('.hero', 1.5); closeNavbar()">hero</a></li>
+                <li><a class="nav-link" onclick="navScroll('.hero')">hero</a></li>
                 <!-- <li><a class="nav-link" onclick="navScroll('.section.education', 1.5)">education</a></li> -->
                 <li><a class="nav-link" onclick="navScroll('.section.about-me')">about me</a></li>
                 <li><a class="nav-link" onclick="navScroll('.section.experience')">experience</a></li>
@@ -53,7 +55,7 @@
             <div class="theme-btns">
                 <h2>Themes</h2>
 
-                <select name="theme" id="theme">
+                <select name="theme" id="theme" onchange="changeTheme(this.value)">
                     <option value="light">Light</option>
                     <option value="dark">Dark</option>
                 </select>
