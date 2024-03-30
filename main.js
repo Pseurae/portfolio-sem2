@@ -225,20 +225,20 @@ function applyStartingAnimation() {
 
 function applyScrollTriggers() {
     // Navigation
-    gsap.set('.floating-nav .trigger', { opacity: 0.0, rotate: '-45deg', x: "-200%" });
+    // gsap.set('.floating-nav .trigger', { opacity: 0.0, rotate: '-45deg', x: "-200%" });
 
-    ScrollTrigger.create({
-        trigger: '.hero',
-        start: 'bottom 90%',
-        end: 'bottom 60%',
-        onLeave: () => {
-            gsap.to('.floating-nav .trigger', { opacity: 1.0, duration: 0.75, x: '0%', rotate: '0deg', ease: 'back.inOut' });
-        },
-        onEnterBack: () => {
-            gsap.to('.floating-nav .trigger', { opacity: 0.0, duration: 0.75, x: '-100%', rotate: '-45deg', ease: 'back.inOut' });
-            closeNavbar();
-        },
-    })
+    // ScrollTrigger.create({
+    //     trigger: '.hero',
+    //     start: 'bottom 90%',
+    //     end: 'bottom 60%',
+    //     onLeave: () => {
+    //         gsap.to('.floating-nav .trigger', { opacity: 1.0, duration: 0.75, x: '0%', rotate: '0deg', ease: 'back.inOut' });
+    //     },
+    //     onEnterBack: () => {
+    //         gsap.to('.floating-nav .trigger', { opacity: 0.0, duration: 0.75, x: '-100%', rotate: '-45deg', ease: 'back.inOut' });
+    //         closeNavbar();
+    //     },
+    // })
 
     // Hero Section
     gsap.to(
@@ -465,8 +465,10 @@ function checkFormValidity() {
 
         if (o.f(el.value)) {
             msg.dataset.visible = false;
+            el.dataset.invalid = false;
         } else {
             msg.dataset.visible = true;
+            el.dataset.invalid = true;
         }
     });
 }
@@ -484,6 +486,7 @@ function setFormListeners() {
             if (!e.isComposing) {
                 const msg = document.querySelector(id + " + .error-msg");
                 msg.dataset.visible = false;
+                el.dataset.invalid = false;
             }
         });
     });
@@ -652,4 +655,8 @@ function startWebsite() {
     applyExperienceAnimation();
     applyProjectHoverEffect();
     setFormListeners();
+}
+
+function toggleTheme() {
+    document.body.classList.toggle('light-mode');
 }
