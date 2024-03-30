@@ -38,8 +38,6 @@ jobs:
         with:
           source: styles.scss
           destination: styles.css
-      - name: Minify Action
-        uses: anthonyftwang/minify-action@v1.0.1
       - name: Create build directory
         run: |
           mkdir build
