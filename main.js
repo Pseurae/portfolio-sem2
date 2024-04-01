@@ -471,5 +471,10 @@ function changeTheme(theme, first) {
     document.querySelector('#theme').value = theme;
     document.body.dataset.theme = theme;
 
-    if (!first) document.body.addEventListener('transitionend', () => { enable(); }, { once: true });
+    if (!first) 
+    {
+        "webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend".split(" ").forEach((e) => {
+            document.body.addEventListener(e, enable, { once: true });
+        });
+    }
 }
