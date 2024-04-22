@@ -432,8 +432,42 @@ window.onresize = () => {
         buildHeroGrid();
 };
 
+function createTrailer()
+{
+    const trailer = document.createElement('div');
+    trailer.classList.add('trailer');
+
+    document.body.appendChild(trailer);
+
+    const moveTrailer = (ex, ey) => {
+        const x = ex - trailer.offsetWidth / 2, 
+              y = ey - trailer.offsetHeight / 2;
+
+        trailer.style.setProperty('--x', x + "px");
+        trailer.style.setProperty('--y', y + "px");
+    };
+
+    const animateTrailer = (interacting) => {
+        trailer.style.setProperty('--scale', (interacting ? 3.0 : 1.0));
+    };
+
+    document.querySelectorAll('a:not(.nav-link), input, textarea, .cards > .card, .project .listing').forEach((el) => {
+        el.addEventListener("mouseenter", (e) => {
+            animateTrailer(true);
+        })
+
+        el.addEventListener("mouseleave", (e) => {
+            animateTrailer(false);
+        })
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        moveTrailer(e.clientX, e.clientY);
+    });
+}
+
+
 function startWebsite() {
-    
     setProjects();
     setEducationPoints();
     changeTheme('dark', true);
@@ -450,6 +484,7 @@ function startWebsite() {
     applyExperienceAnimation();
     applyProjectHoverEffect();
     setFormListeners();
+    createTrailer();
 }
 
 function changeTheme(theme, first) {
